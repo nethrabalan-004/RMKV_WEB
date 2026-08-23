@@ -195,6 +195,7 @@ const FINFEST_DATA = {
       duration: "2 Hours",
       teamSize: "2 Participants per Team",
       teamsPerCollege: "Max 2 Teams per College",
+      regFormUrl: "https://forms.google.com", // Dedicated Google Form for Stock Wars
       overview: "Stock Wars is an intense, fast-paced investment strategy competition simulating real-world stock market dynamics. Participants assume the mantle of hedge fund portfolio managers, managing virtual capital through live-action market shifts, corporate announcements, and high-volatility financial events. Test your risk modeling, rapid asset allocation, and nerve under pressure.",
       format: [
         {
@@ -245,6 +246,7 @@ const FINFEST_DATA = {
       duration: "10 Minutes per Team (8m Pitch + 2m Q&A)",
       teamSize: "Max 2 Members per Team",
       teamsPerCollege: "2 Teams per Department",
+      regFormUrl: "https://forms.google.com", // Dedicated Google Form for Business Proposal
       overview: "Business Proposal bridges the gap between academic theory and real-world venture capital. Transform innovative business concepts into bankable, market-ready enterprise blueprints. Present your customer acquisition engine, financial unit economics, revenue architecture, and scalability models before a panel of seasoned Chartered Accountants and corporate venture specialists.",
       format: [
         {
@@ -291,6 +293,7 @@ const FINFEST_DATA = {
       duration: "5 Progressive Stages",
       teamSize: "2 - 3 Members per Team",
       teamsPerCollege: "2 Teams per College",
+      regFormUrl: "https://forms.google.com", // Dedicated Google Form for Forensic Treasure Hunt
       overview: "Step into the shoes of forensic auditors and financial intelligence detectives. In this 5-stage campus-wide investigation, uncover corporate embezzlement schemes, decode cooked balance sheets, trace offshore shell entities, and follow cryptic audit clues hidden across campus to build an ironclad case against corporate fraud.",
       format: [
         {
@@ -339,6 +342,7 @@ const FINFEST_DATA = {
       duration: "Prelims + 4 On-Stage Rounds",
       teamSize: "2 Members per Team",
       teamsPerCollege: "2 Teams per Department",
+      regFormUrl: "https://forms.google.com", // Dedicated Google Form for Finance Quiz
       overview: "A masterclass in financial trivia and intellectual combat. Fin-Q tests participants on central banking policies, fiscal regulations, mergers & acquisitions history, crypto-economics, corporate balance sheet jargon, stock ticker acronyms, and global financial crises from the 1929 Great Depression to contemporary fintech revolutions.",
       format: [
         {
@@ -385,6 +389,7 @@ const FINFEST_DATA = {
       duration: "Case Study + 12m Simulation",
       teamSize: "2 Members per Team",
       teamsPerCollege: "2 Teams per College",
+      regFormUrl: "https://forms.google.com", // Dedicated Google Form for Crisis Management
       overview: "When a multi-billion-dollar corporation plunges into a catastrophic liquidity crisis, accounting fraud disclosure, or hostile takeover bid, the board turns to you. In this immersive simulation, formulate a rapid emergency recovery blueprint, manage media backlash, restructure debt covenants, and defend your survival plan before a ruthless board of inquiry.",
       format: [
         {
@@ -427,6 +432,7 @@ const FINFEST_DATA = {
       duration: "Presentation + Model Demo",
       teamSize: "2 Members per Team",
       teamsPerCollege: "2 Teams per Department",
+      regFormUrl: "https://forms.google.com", // Dedicated Google Form for FinTech Innovation
       overview: "Finance is evolving with generative AI, decentralized ledgers, ESG carbon credits, and algorithmic high-frequency systems. Pitch cutting-edge solutions addressing financial inclusion, automated robo-advisory, smart contract micro-lending, or blockchain cross-border remittances.",
       format: [
         {

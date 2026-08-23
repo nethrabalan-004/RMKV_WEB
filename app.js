@@ -260,12 +260,12 @@ function openEventModal(eventId) {
           Registration closes: 09-09-2026
         </div>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-          <a href="#register" onclick="closeEventModal(); openRegisterModal('${evt.title}');" class="btn btn-primary">
+          <a href="${evt.regFormUrl}" target="_blank" class="btn btn-primary">
             Register for ${evt.title} ${getIconSvg('arrow-right')}
           </a>
-          <a href="${FINFEST_DATA.meta.ruleBookUrl}" target="_blank" class="btn btn-secondary btn-sm">
-            Official Rule Book PDF
-          </a>
+          <button onclick="closeEventModal(); openRegisterModal('${evt.id}');" class="btn btn-secondary btn-sm">
+            Event Form & Rules
+          </button>
         </div>
       </div>
     `;
@@ -467,16 +467,112 @@ function initModals() {
   });
 }
 
-function openRegisterModal(eventName = '') {
+function openRegisterModal(eventParam = '') {
   const regModal = document.getElementById('register-modal');
-  const regSubtitle = document.getElementById('reg-modal-subtitle');
-  if (regSubtitle) {
-    regSubtitle.textContent = eventName ? `Event Selected: ${eventName}` : 'Complete your online registration below';
+  const titleEl = document.getElementById('reg-modal-title');
+  const subtitleEl = document.getElementById('reg-modal-subtitle');
+  const badgeEl = document.getElementById('reg-modal-badge');
+  const bodyContentEl = document.getElementById('reg-modal-body-content');
+
+  if (!regModal || !bodyContentEl) return;
+
+  const evt = eventParam ? FINFEST_DATA.events.find(e => e.id === eventParam || e.title.toLowerCase() === eventParam.toLowerCase()) : null;
+
+  if (evt) {
+    if (badgeEl) badgeEl.textContent = `${evt.title} Registration`;
+    if (titleEl) titleEl.textContent = `Register for ${evt.title}`;
+    if (subtitleEl) subtitleEl.textContent = `Direct Google Form for ${evt.title} (${evt.category})`;
+
+    bodyContentEl.innerHTML = `
+      <div class="modal-section-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.5rem;">
+          <h4 style="color: ${evt.color}; margin: 0;">${evt.title}</h4>
+          <span class="badge badge-glow-cyan">${evt.timing}</span>
+        </div>
+        <p style="font-size: 0.9rem; color: #CBD5E1; line-height: 1.6; margin-bottom: 1rem;">
+          ${evt.overview}
+        </p>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          <span class="badge badge-outline">Team: ${evt.teamSize}</span>
+          <span class="badge badge-outline">Venue: ${evt.venue}</span>
+        </div>
+      </div>
+
+      <div class="modal-section-card">
+        <h4 style="color: var(--accent-cyan);">Important Guidelines</h4>
+        <ul class="modal-rules-checklist">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Fill out this dedicated Google Form for <strong>${evt.title}</strong>.</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>One candidate can register for a maximum of 3 events across FINFEST '26.</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Original College ID cards are mandatory on event day (09-09-2026).</span>
+          </li>
+        </ul>
+      </div>
+
+      <div style="text-align: center; padding: 0.5rem 0; display: flex; flex-direction: column; gap: 0.75rem;">
+        <a href="${evt.regFormUrl}" target="_blank" class="btn btn-primary btn-lg" style="width: 100%;">
+          Proceed to ${evt.title} Google Form →
+        </a>
+        <button onclick="openRegisterModal('')" class="btn btn-secondary btn-sm" style="width: 100%;">
+          ← View Forms for Other 5 Events
+        </button>
+        <a href="${FINFEST_DATA.meta.whatsappGroupUrl}" target="_blank" class="btn btn-gold btn-lg" style="width: 100%;">
+          Join Official WhatsApp Group
+        </a>
+      </div>
+    `;
+  } else {
+    // General 6-Event Hub
+    if (badgeEl) badgeEl.textContent = 'Online Registration Hub';
+    if (titleEl) titleEl.textContent = "FINFEST '26 Event Forms";
+    if (subtitleEl) subtitleEl.textContent = 'Each event has a separate Google Form. Select your event below:';
+
+    bodyContentEl.innerHTML = `
+      <div style="display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1.25rem;">
+        ${FINFEST_DATA.events.map((e, idx) => `
+          <div style="background: rgba(4, 10, 24, 0.85); border: 1px solid var(--border-subtle); border-left: 3px solid ${e.color}; border-radius: var(--radius-xs); padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <div>
+              <div style="font-weight: 700; color: #FFFFFF; font-size: 0.95rem;">${idx + 1}. ${e.title}</div>
+              <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">${e.timing} • ${e.teamSize}</div>
+            </div>
+            <a href="${e.regFormUrl}" target="_blank" class="btn btn-primary btn-sm" style="flex-shrink: 0;">
+              Open Form →
+            </a>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="modal-section-card">
+        <h4 style="color: var(--accent-cyan);">General Guidelines</h4>
+        <ul class="modal-rules-checklist">
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Fill out the specific form corresponding to each competition you are participating in.</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>One candidate can register for a maximum of 3 events.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div style="text-align: center; padding: 0.25rem 0;">
+        <a href="${FINFEST_DATA.meta.whatsappGroupUrl}" target="_blank" class="btn btn-gold btn-lg" style="width: 100%;">
+          Join Official WhatsApp Group
+        </a>
+      </div>
+    `;
   }
-  if (regModal) {
-    regModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+
+  regModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeRegisterModal() {

@@ -542,13 +542,13 @@
   </div>
 
   <!-- ==========================================================================
-       Registration Modal
+       Registration Modal (Supports Direct Per-Event Form Links)
        ========================================================================== -->
   <div class="modal-overlay" id="register-modal" role="dialog" aria-modal="true" aria-labelledby="reg-modal-title">
-    <div class="modal-dialog" style="max-width: 600px;">
+    <div class="modal-dialog" style="max-width: 640px;">
       <div class="modal-header">
         <div class="modal-header-top">
-          <span class="badge badge-glow-gold">Online Registration</span>
+          <span class="badge badge-glow-gold" id="reg-modal-badge">Online Registration</span>
           <button class="modal-close-btn" onclick="closeRegisterModal()" aria-label="Close Registration Modal">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -556,41 +556,13 @@
             </svg>
           </button>
         </div>
-        <h3 id="reg-modal-title" class="modal-event-title" style="font-size: 1.6rem; color: #fff;">
+        <h3 id="reg-modal-title" class="modal-event-title" style="font-size: 1.65rem; color: #fff;">
           Register for FINFEST '26
         </h3>
-        <p id="reg-modal-subtitle" style="font-size: 0.85rem; color: var(--accent-cyan); margin-top: 0.35rem;"></p>
+        <p id="reg-modal-subtitle" style="font-size: 0.85rem; color: var(--accent-cyan); margin-top: 0.25rem;"></p>
       </div>
-      <div class="modal-body">
-        <div class="modal-section-card">
-          <h4 style="color: var(--accent-cyan);">Registration Checklist</h4>
-          <ul class="modal-rules-checklist">
-            <li>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Each participant must register separately at the individual level.</span>
-            </li>
-            <li>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>One candidate can register for a maximum of 3 events.</span>
-            </li>
-            <li>
-              <svg width="16" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Original College ID cards are mandatory on event day.</span>
-            </li>
-            <li>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span>Mandatory reporting time: Prior to 9:00 AM at registration desk.</span>
-            </li>
-          </ul>
-        </div>
-        <div style="text-align: center; padding: 0.5rem 0;">
-          <a href="https://forms.google.com" target="_blank" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 0.75rem;">
-            Proceed to Registration Form →
-          </a>
-          <a href="https://chat.whatsapp.com" target="_blank" class="btn btn-gold btn-lg" style="width: 100%;">
-            Join Official WhatsApp Group
-          </a>
-        </div>
+      <div class="modal-body" id="reg-modal-body-content">
+        <!-- Injected dynamically by openRegisterModal() in app.js -->
       </div>
     </div>
   </div>
