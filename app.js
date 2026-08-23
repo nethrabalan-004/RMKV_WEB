@@ -98,35 +98,11 @@ function renderGeneralRules() {
 /* ==========================================================================
    4. Render Professional Clean Events Grid
    ========================================================================== */
-function renderEvents(filterCategory = 'all') {
+function renderEvents() {
   const gridContainer = document.getElementById('events-grid-container');
-  const filterContainer = document.getElementById('events-filter-container');
   if (!gridContainer || !FINFEST_DATA.events) return;
 
-  // Render Filter Buttons once
-  if (filterContainer && filterContainer.children.length === 0) {
-    const categories = ['all', ...new Set(FINFEST_DATA.events.map(e => e.category))];
-    filterContainer.innerHTML = categories.map(cat => `
-      <button class="filter-btn ${cat === 'all' ? 'active' : ''}" data-filter="${cat}">
-        ${cat === 'all' ? 'All 6 Events' : cat}
-      </button>
-    `).join('');
-
-    filterContainer.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderEvents(btn.getAttribute('data-filter'));
-      });
-    });
-  }
-
-  // Filter Events
-  const filteredEvents = filterCategory === 'all'
-    ? FINFEST_DATA.events
-    : FINFEST_DATA.events.filter(e => e.category === filterCategory);
-
-  gridContainer.innerHTML = filteredEvents.map((evt, idx) => `
+  gridContainer.innerHTML = FINFEST_DATA.events.map((evt, idx) => `
     <div class="event-card reveal reveal-delay-${(idx % 3) + 1}" 
          style="--card-accent: ${evt.color}; --card-glow: ${evt.accentGlow};"
          onclick="openEventModal('${evt.id}')">
