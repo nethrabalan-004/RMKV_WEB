@@ -521,16 +521,16 @@
   <div class="modal-overlay" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-event-title">
     <div class="modal-dialog">
       <div class="modal-header">
-        <div>
-          <div id="modal-event-tag" style="display: flex; gap: 0.5rem; margin-bottom: 0.4rem;"></div>
-          <h3 id="modal-event-title" style="font-family: var(--font-display); font-size: 1.65rem; color: #fff;"></h3>
+        <div class="modal-header-top">
+          <div id="modal-event-tag" class="modal-tags-wrap"></div>
+          <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
         </div>
-        <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+        <h3 id="modal-event-title" class="modal-event-title"></h3>
       </div>
       <div class="modal-body" id="modal-event-body">
         <!-- Injected dynamically by openEventModal() -->
@@ -543,23 +543,23 @@
 
   <!-- ==========================================================================
        Registration Modal
-       ========================================================================== */ -->
+       ========================================================================== -->
   <div class="modal-overlay" id="register-modal" role="dialog" aria-modal="true" aria-labelledby="reg-modal-title">
     <div class="modal-dialog" style="max-width: 600px;">
       <div class="modal-header">
-        <div>
-          <span class="badge badge-glow-gold" style="margin-bottom: 0.35rem;">Online Registration</span>
-          <h3 id="reg-modal-title" style="font-family: var(--font-display); font-size: 1.5rem; color: #fff;">
-            Register for FINFEST '26
-          </h3>
-          <p id="reg-modal-subtitle" style="font-size: 0.85rem; color: var(--accent-cyan); margin-top: 0.2rem;"></p>
+        <div class="modal-header-top">
+          <span class="badge badge-glow-gold">Online Registration</span>
+          <button class="modal-close-btn" onclick="closeRegisterModal()" aria-label="Close Registration Modal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
         </div>
-        <button class="modal-close-btn" onclick="closeRegisterModal()" aria-label="Close Registration Modal">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+        <h3 id="reg-modal-title" class="modal-event-title" style="font-size: 1.6rem; color: #fff;">
+          Register for FINFEST '26
+        </h3>
+        <p id="reg-modal-subtitle" style="font-size: 0.85rem; color: var(--accent-cyan); margin-top: 0.35rem;"></p>
       </div>
       <div class="modal-body">
         <div class="modal-section-card">
