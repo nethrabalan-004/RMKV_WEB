@@ -123,7 +123,10 @@ function renderEvents() {
       
       <div>
         <div class="event-card-header">
-          <span class="event-num-tag">EVENT 0${idx + 1}</span>
+          <div style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;">
+            <span class="event-num-tag">EVENT 0${idx + 1}</span>
+            <span class="badge badge-glow-cyan" style="font-size: 0.68rem; padding: 0.2rem 0.5rem;">${evt.badge}</span>
+          </div>
           <span class="event-category-badge">${evt.category}</span>
         </div>
 
@@ -148,10 +151,10 @@ function renderEvents() {
         </div>
 
         <div class="event-card-footer">
-          <span class="badge badge-glow-cyan">${evt.badge}</span>
-          <span class="event-view-cta">
-            View Details ${getIconSvg('arrow-right')}
-          </span>
+          <div class="event-card-cta-btn">
+            <span>View Details & Rules</span>
+            ${getIconSvg('arrow-right')}
+          </div>
         </div>
       </div>
     </div>
