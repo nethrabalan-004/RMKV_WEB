@@ -23,6 +23,7 @@
   --accent-gold: #FFC72C;
   --accent-gold-glow: rgba(255, 199, 44, 0.35);
   --accent-purple: #9D00FF;
+  --accent-red: #FF3366;
 
   /* Typography Colors */
   --text-pure: #FFFFFF;
@@ -81,6 +82,171 @@ body {
   overflow-x: hidden;
   line-height: 1.65;
   background: radial-gradient(circle at 50% 0%, #0c1c44 0%, #040814 65%);
+}
+
+/* ==========================================================================
+   3D Trading Bar Intro Loader Overlay
+   ========================================================================== */
+#intro-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #020612;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+#intro-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.08);
+  pointer-events: none;
+}
+
+.loader-canvas-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.loader-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 500px;
+}
+
+/* 3D Fluctuating Candlestick Chart in Loader */
+.loader-chart-stage {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 14px;
+  height: 120px;
+  margin-bottom: 2rem;
+  perspective: 600px;
+}
+
+.loader-candle {
+  position: relative;
+  width: 16px;
+  border-radius: 3px;
+  transform-style: preserve-3d;
+  will-change: height, transform;
+}
+
+.loader-candle::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -15px;
+  width: 2px;
+  height: calc(100% + 30px);
+  transform: translateX(-50%);
+  background: inherit;
+  opacity: 0.6;
+}
+
+/* Dynamic Candlestick Waves */
+.loader-candle.green {
+  background: linear-gradient(180deg, #00E676 0%, #00B0FF 100%);
+  box-shadow: 0 0 20px rgba(0, 230, 118, 0.6);
+  animation: candleBounceUp 1.6s ease-in-out infinite alternate;
+}
+
+.loader-candle.red {
+  background: linear-gradient(180deg, #FF3366 0%, #FF9100 100%);
+  box-shadow: 0 0 20px rgba(255, 51, 102, 0.6);
+  animation: candleBounceDown 1.4s ease-in-out infinite alternate;
+}
+
+.loader-candle.cyan {
+  background: linear-gradient(180deg, #00F0FF 0%, #2979FF 100%);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+  animation: candleBounceUp 1.8s ease-in-out infinite alternate;
+}
+
+.loader-candle:nth-child(1) { height: 45px; animation-delay: 0.0s; }
+.loader-candle:nth-child(2) { height: 80px; animation-delay: 0.2s; }
+.loader-candle:nth-child(3) { height: 35px; animation-delay: 0.4s; }
+.loader-candle:nth-child(4) { height: 95px; animation-delay: 0.1s; }
+.loader-candle:nth-child(5) { height: 60px; animation-delay: 0.3s; }
+.loader-candle:nth-child(6) { height: 110px; animation-delay: 0.5s; }
+.loader-candle:nth-child(7) { height: 75px; animation-delay: 0.25s; }
+
+@keyframes candleBounceUp {
+  0% { transform: translateY(0) scaleY(0.7) rotateX(10deg); }
+  50% { transform: translateY(-15px) scaleY(1.25) rotateX(0deg); }
+  100% { transform: translateY(5px) scaleY(0.9) rotateX(-10deg); }
+}
+
+@keyframes candleBounceDown {
+  0% { transform: translateY(0) scaleY(1.1) rotateX(-10deg); }
+  50% { transform: translateY(12px) scaleY(0.65) rotateX(0deg); }
+  100% { transform: translateY(-8px) scaleY(1.2) rotateX(10deg); }
+}
+
+.loader-title {
+  font-family: var(--font-finfest);
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #fff;
+  text-shadow: 0 0 20px var(--accent-cyan);
+  margin-bottom: 0.4rem;
+}
+
+.loader-ticker-data {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--accent-emerald);
+  letter-spacing: 1px;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.loader-progress-track {
+  width: 220px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald));
+  box-shadow: 0 0 12px var(--accent-cyan);
+  animation: loadProgressFill 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes loadProgressFill {
+  0% { width: 0%; }
+  40% { width: 45%; }
+  75% { width: 85%; }
+  100% { width: 100%; }
 }
 
 /* Scrollbar */
@@ -511,13 +677,14 @@ body {
 }
 
 /* ==========================================================================
-   Hero Section (PDF-Matched High-Impact Typography)
+   Hero Section & 3D Extrusion Event Title
    ========================================================================== */
 .hero-section {
   position: relative;
   padding: 3.5rem 0 5rem;
   text-align: center;
   overflow: hidden;
+  perspective: 1200px;
 }
 
 @media (min-width: 768px) {
@@ -531,9 +698,9 @@ body {
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, rgba(0, 240, 255, 0.18) 0%, rgba(41, 121, 255, 0.08) 50%, transparent 70%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.22) 0%, rgba(41, 121, 255, 0.1) 50%, transparent 70%);
   border-radius: 50%;
   filter: blur(80px);
   pointer-events: none;
@@ -627,11 +794,13 @@ body {
 }
 
 /* ==========================================================================
-   EVENT NAME MATCHING PDF COVER STYLE ("FINFEST '26")
+   3D EXTRUDED EVENT NAME ("FINFEST '26") WITH INTERACTIVE 3D TILT
    ========================================================================== */
 .hero-event-wrap {
   margin: 0.75rem 0 1.5rem;
   position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .hero-event-organizes {
@@ -645,44 +814,62 @@ body {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-.hero-event-title {
+.hero-event-title-3d {
   font-family: var(--font-finfest);
-  font-size: 3.4rem;
+  font-size: 3.5rem;
   font-weight: 900;
   line-height: 1.05;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: #FFFFFF;
-  -webkit-text-stroke: 1.5px #00F0FF;
+  display: inline-block;
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: default;
+
+  /* 3D Multi-layered Extrusion Text Shadow with Neon Bevel */
   text-shadow: 
-    0 0 10px rgba(0, 240, 255, 0.8),
-    0 0 25px rgba(0, 240, 255, 0.6),
-    0 0 50px rgba(41, 121, 255, 0.8),
-    0 0 80px rgba(41, 121, 255, 0.5);
-  animation: finfestGlowPulse 4s ease-in-out infinite alternate;
+    0 1px 0 #00D4E6,
+    0 2px 0 #00B8C7,
+    0 3px 0 #009AA8,
+    0 4px 0 #007C89,
+    0 5px 0 #005E6B,
+    0 6px 1px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(0, 240, 255, 0.9),
+    0 0 35px rgba(0, 240, 255, 0.7),
+    0 0 70px rgba(41, 121, 255, 0.85),
+    0 0 100px rgba(41, 121, 255, 0.5);
+  animation: finfest3DFloat 5s ease-in-out infinite alternate;
 }
 
-@keyframes finfestGlowPulse {
+@keyframes finfest3DFloat {
   0% {
-    text-shadow: 
-      0 0 10px rgba(0, 240, 255, 0.8),
-      0 0 25px rgba(0, 240, 255, 0.6),
-      0 0 50px rgba(41, 121, 255, 0.8);
+    transform: rotateX(8deg) rotateY(-4deg) translateZ(10px);
+  }
+  50% {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(25px);
   }
   100% {
-    text-shadow: 
-      0 0 15px rgba(0, 240, 255, 1),
-      0 0 35px rgba(0, 240, 255, 0.9),
-      0 0 70px rgba(41, 121, 255, 1),
-      0 0 100px rgba(0, 240, 255, 0.7);
+    transform: rotateX(-8deg) rotateY(4deg) translateZ(10px);
   }
 }
 
 @media (min-width: 768px) {
-  .hero-event-title {
-    font-size: 5.8rem;
-    letter-spacing: 6px;
-    -webkit-text-stroke: 2px #00F0FF;
+  .hero-event-title-3d {
+    font-size: 6rem;
+    letter-spacing: 8px;
+    text-shadow: 
+      0 1px 0 #00D4E6,
+      0 2px 0 #00B8C7,
+      0 3px 0 #009AA8,
+      0 4px 0 #007C89,
+      0 5px 0 #005E6B,
+      0 6px 0 #004550,
+      0 7px 2px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(0, 240, 255, 1),
+      0 0 45px rgba(0, 240, 255, 0.85),
+      0 0 85px rgba(41, 121, 255, 0.9),
+      0 0 120px rgba(41, 121, 255, 0.6);
   }
 }
 

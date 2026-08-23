@@ -4,6 +4,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initIntroLoader();
+  init3DTitleTilt();
   initCountdown();
   renderGeneralRules();
   renderEvents();
@@ -495,7 +497,45 @@ function closeRegisterModal() {
   }
 }
 
+/* ==========================================================================
+   12. 3D Trading Candlestick Intro Loader & 3D Title Interactive Tilt
+   ========================================================================== */
+function initIntroLoader() {
+  const loader = document.getElementById('intro-loader');
+  if (!loader) return;
+
+  // Dismiss loader after market initialization simulation (1.6s)
+  setTimeout(() => {
+    loader.classList.add('loaded');
+    setTimeout(() => {
+      loader.remove();
+    }, 850);
+  }, 1600);
+}
+
+function init3DTitleTilt() {
+  const title3d = document.getElementById('hero-3d-title');
+  const heroWrap = document.querySelector('.hero-event-wrap');
+  if (!title3d || !heroWrap) return;
+
+  heroWrap.addEventListener('mousemove', (e) => {
+    const rect = heroWrap.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    const rotX = -(y / rect.height) * 22;
+    const rotY = (x / rect.width) * 22;
+
+    title3d.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(30px)`;
+  });
+
+  heroWrap.addEventListener('mouseleave', () => {
+    title3d.style.transform = '';
+  });
+}
+
 window.openEventModal = openEventModal;
 window.closeEventModal = closeEventModal;
 window.openRegisterModal = openRegisterModal;
 window.closeRegisterModal = closeRegisterModal;
+
