@@ -27,8 +27,8 @@ function initCountdown() {
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
-  // Target deadline: 03-09-2026
-  const targetDate = new Date('2026-09-03T23:59:59').getTime();
+  // Target deadline: 09-09-2026 (September 9, 2026)
+  const targetDate = new Date('2026-09-09T23:59:59').getTime();
 
   function updateTimer() {
     const now = new Date().getTime();
@@ -265,7 +265,7 @@ function openEventModal(eventId) {
     footerActionEl.innerHTML = `
       <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; width: 100%; justify-content: space-between; align-items: center;">
         <div style="font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono);">
-          Registration closes: 03-09-2026
+          Registration closes: 09-09-2026
         </div>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <a href="#register" onclick="closeEventModal(); openRegisterModal('${evt.title}');" class="btn btn-primary">
