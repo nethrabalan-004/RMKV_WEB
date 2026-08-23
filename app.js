@@ -498,19 +498,142 @@ function closeRegisterModal() {
 }
 
 /* ==========================================================================
-   12. 3D Trading Candlestick Intro Loader & 3D Title Interactive Tilt
+   12. Full-Page Cinematic Moving Trading Intro Loader
    ========================================================================== */
 function initIntroLoader() {
   const loader = document.getElementById('intro-loader');
+  const canvas = document.getElementById('loader-canvas');
+  const pctCounter = document.getElementById('loader-pct-counter');
+  const barFill = document.getElementById('loader-bar-fill');
+
   if (!loader) return;
 
-  // Dismiss loader after market initialization simulation (1.6s)
-  setTimeout(() => {
-    loader.classList.add('loaded');
-    setTimeout(() => {
-      loader.remove();
-    }, 850);
-  }, 1600);
+  // Prevent background scrolling while loading
+  document.body.style.overflow = 'hidden';
+
+  // 1. Full-Screen Dynamic Trading Canvas Animation inside Loader
+  let animId = null;
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    let frame = 0;
+    const particles = Array.from({ length: 45 }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 1.5,
+      vy: (Math.random() - 0.5) * 1.5,
+      size: Math.random() * 2 + 1,
+      color: Math.random() > 0.5 ? '#00F0FF' : '#00E676'
+    }));
+
+    function renderLoaderScene() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Perspective Holographic Grid
+      ctx.strokeStyle = 'rgba(0, 240, 255, 0.06)';
+      ctx.lineWidth = 1;
+      const gridSize = 60;
+      for (let x = 0; x < width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+      for (let y = 0; y < height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // Dynamic Sweeping Stock Market Splines
+      frame++;
+      
+      // Wave 1: Cyan Bullish Surge
+      ctx.beginPath();
+      ctx.strokeStyle = '#00F0FF';
+      ctx.lineWidth = 2.5;
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = '#00F0FF';
+      for (let x = 0; x < width; x += 10) {
+        const y = height * 0.55 + Math.sin((x + frame * 4) * 0.012) * 50 + Math.cos((x - frame * 2) * 0.02) * 25;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // Wave 2: Emerald Momentum Line
+      ctx.beginPath();
+      ctx.strokeStyle = '#00E676';
+      ctx.lineWidth = 2;
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = '#00E676';
+      for (let x = 0; x < width; x += 10) {
+        const y = height * 0.65 + Math.cos((x + frame * 3) * 0.01) * 40 + Math.sin((x + frame * 2) * 0.018) * 30;
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Floating Network Particles
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.fillStyle = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      animId = requestAnimationFrame(renderLoaderScene);
+    }
+
+    renderLoaderScene();
+  }
+
+  // 2. Real-Time Percentage Counter & Progress Sync
+  let progress = 0;
+  const duration = 1800; // 1.8 seconds total
+  const intervalTime = 30;
+  const step = (100 / (duration / intervalTime));
+
+  const progressInterval = setInterval(() => {
+    progress += step;
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(progressInterval);
+      if (pctCounter) pctCounter.textContent = '100%';
+      if (barFill) barFill.style.width = '100%';
+
+      // Smooth dismiss
+      setTimeout(() => {
+        loader.classList.add('loaded');
+        document.body.style.overflow = '';
+        if (animId) cancelAnimationFrame(animId);
+        setTimeout(() => {
+          loader.remove();
+        }, 900);
+      }, 250);
+      return;
+    }
+
+    const currentVal = Math.floor(progress);
+    if (pctCounter) pctCounter.textContent = `${currentVal}%`;
+    if (barFill) barFill.style.width = `${currentVal}%`;
+  }, intervalTime);
 }
 
 function init3DTitleTilt() {

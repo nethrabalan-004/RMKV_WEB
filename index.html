@@ -18,9 +18,23 @@
 </head>
 <body>
 
-  <!-- 3D Trading Candlestick Intro Loader -->
-  <div id="intro-loader" aria-label="Loading FINFEST '26">
+  <!-- Full-Page Cinematic Moving Trading Intro Loader -->
+  <div id="intro-loader" aria-label="Loading FINFEST '26 Market Experience">
+    <!-- Dedicated Full-Screen Animated Trading Canvas -->
+    <canvas id="loader-canvas"></canvas>
+
+    <!-- Top Telemetry Stream -->
+    <div class="loader-hud-top">
+      <div class="hud-item"><span class="hud-dot"></span> LIVE EXCHANGE FEED</div>
+      <div class="hud-item hud-college">RAMAKRISHNA MISSION VIVEKANANDA COLLEGE (SHIFT-2)</div>
+      <div class="hud-item">SYS.STATUS: <strong style="color: #00F0FF;">INITIALIZING...</strong></div>
+    </div>
+
+    <!-- Center Stage Holographic Terminal -->
     <div class="loader-content">
+      <div class="loader-target-ring"></div>
+      
+      <!-- Full Panorama 3D Candlestick Parade -->
       <div class="loader-chart-stage">
         <div class="loader-candle green"></div>
         <div class="loader-candle cyan"></div>
@@ -29,16 +43,39 @@
         <div class="loader-candle cyan"></div>
         <div class="loader-candle green"></div>
         <div class="loader-candle red"></div>
+        <div class="loader-candle green"></div>
+        <div class="loader-candle cyan"></div>
+        <div class="loader-candle green"></div>
+        <div class="loader-candle red"></div>
+        <div class="loader-candle cyan"></div>
+        <div class="loader-candle green"></div>
       </div>
+
+      <div class="loader-dept-tag">P.G. DEPARTMENT OF ACCOUNTING & FINANCE</div>
       <div class="loader-title">FINFEST '26</div>
+      
       <div class="loader-ticker-data">
-        <span>▲ +38.4%</span>
-        <span>INITIALIZING MARKET TERMINAL...</span>
+        <span class="ticker-glow-pct" id="loader-pct-counter">0%</span>
+        <span class="ticker-msg">SYNCING HIGH-FREQUENCY ACADEMIC ARENA...</span>
       </div>
+
       <div class="loader-progress-track">
-        <div class="loader-progress-bar"></div>
+        <div class="loader-progress-bar" id="loader-bar-fill"></div>
+      </div>
+
+      <div class="loader-sub-telemetry">
+        <span>NIFTY FIN ▲ +4.2%</span>
+        <span>•</span>
+        <span>SENSEX ▲ +650</span>
+        <span>•</span>
+        <span>NASDAQ ▲ +1.8%</span>
+        <span>•</span>
+        <span>MARKET OPEN</span>
       </div>
     </div>
+
+    <!-- Bottom Laser Sweep Bar -->
+    <div class="loader-laser-sweep"></div>
   </div>
 
   <!-- High Performance Ambient Canvas Background -->
