@@ -604,14 +604,31 @@ function initIntroLoader() {
     renderLoaderScene();
   }
 
-  // 2. Real-Time Percentage Counter & Progress Sync
+  // 2. Real-Time Percentage Counter & Progress Sync (7 Seconds Duration)
   let progress = 0;
-  const duration = 1800; // 1.8 seconds total
+  const duration = 7000; // 7 seconds total
   const intervalTime = 30;
   const step = (100 / (duration / intervalTime));
+  const tickerMsg = document.querySelector('.ticker-msg');
 
   const progressInterval = setInterval(() => {
     progress += step;
+
+    // Dynamic Phased Telemetry during the 7 seconds
+    if (tickerMsg) {
+      if (progress < 25) {
+        tickerMsg.textContent = 'CONNECTING TO HIGH-FREQUENCY EXCHANGE...';
+      } else if (progress < 50) {
+        tickerMsg.textContent = 'FETCHING LIVE COMMERCE & STRATEGY FEEDS...';
+      } else if (progress < 75) {
+        tickerMsg.textContent = 'INITIALIZING 6 CHAMPIONSHIP ARENAS...';
+      } else if (progress < 95) {
+        tickerMsg.textContent = 'CALIBRATING REAL-TIME SCORING MATRICES...';
+      } else {
+        tickerMsg.textContent = 'SYSTEM READY — WELCOME TO FINFEST 2026';
+      }
+    }
+
     if (progress >= 100) {
       progress = 100;
       clearInterval(progressInterval);
@@ -626,7 +643,7 @@ function initIntroLoader() {
         setTimeout(() => {
           loader.remove();
         }, 900);
-      }, 250);
+      }, 400);
       return;
     }
 
