@@ -3,7 +3,17 @@
  * Handles live countdown, event modal dossiers, dynamic filtering, scroll animations, and navigation.
  */
 
+// Disable automatic browser scroll restoration so page ALWAYS loads at the very top
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 document.addEventListener('DOMContentLoaded', () => {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+
   initIntroLoader();
   init3DTitleTilt();
   initCountdown();
@@ -16,6 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
   initNavigation();
   initModals();
+});
+
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
 });
 
 /* ==========================================================================
@@ -615,6 +629,7 @@ function initIntroLoader() {
       setTimeout(() => {
         loader.classList.add('loaded');
         document.body.style.overflow = '';
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         if (animId) cancelAnimationFrame(animId);
         setTimeout(() => {
           loader.remove();
