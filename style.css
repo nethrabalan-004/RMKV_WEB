@@ -780,7 +780,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.4rem;
+  padding: 0.75rem 1.4rem;
   font-family: var(--font-display);
   font-size: 0.92rem;
   font-weight: 600;
@@ -789,7 +789,11 @@ body {
   cursor: pointer;
   transition: all var(--transition-smooth);
   border: 1px solid transparent;
-  white-space: nowrap;
+  text-align: center;
+  line-height: 1.35;
+  box-sizing: border-box;
+  max-width: 100%;
+  word-break: normal;
 }
 
 .btn-primary {
@@ -837,8 +841,15 @@ body {
 }
 
 .btn-lg {
-  padding: 0.95rem 2rem;
-  font-size: 1.05rem;
+  padding: 0.95rem 1.6rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .btn-lg {
+    padding: 0.85rem 1.15rem;
+    font-size: 0.92rem;
+  }
 }
 
 /* Badges - Modern Sharp Precision Micro-Tags */
@@ -1733,6 +1744,24 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .modal-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+    padding: 1rem 1.25rem;
+  }
+  .modal-footer > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .modal-footer .btn {
+    width: 100%;
+  }
 }
 
 /* ==========================================================================
