@@ -295,7 +295,7 @@ const FINFEST_DATA = {
       duration: "5 Progressive Stages",
       teamSize: "2 - 3 Members per Team",
       teamsPerCollege: "2 Teams per College",
-      regFormUrl: "https://forms.google.com", // Dedicated Google Form for Forensic Treasure Hunt
+      regFormUrl: "https://forms.gle/L3Q1kXm3SFU92QtH9", // Dedicated Google Form for Forensic Treasure Hunt
       overview: "Step into the shoes of forensic auditors and financial intelligence detectives. In this 5-stage campus-wide investigation, uncover corporate embezzlement schemes, decode cooked balance sheets, trace offshore shell entities, and follow cryptic audit clues hidden across campus to build an ironclad case against corporate fraud.",
       format: [
         {

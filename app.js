@@ -484,6 +484,21 @@ function openRegisterModal(eventParam = '') {
     if (subtitleEl) subtitleEl.textContent = `Direct Google Form for ${evt.title} (${evt.category})`;
 
     bodyContentEl.innerHTML = `
+      <!-- Official WhatsApp Banner at Top -->
+      <div style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.15) 0%, rgba(18, 140, 126, 0.2) 100%); border: 1px solid rgba(37, 211, 102, 0.4); border-radius: var(--radius-sm); padding: 0.85rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap;">
+        <div>
+          <div style="font-size: 0.88rem; color: #25D366; font-weight: 800;">
+            💬 Official FINFEST '26 WhatsApp Group
+          </div>
+          <div style="font-size: 0.76rem; color: #CBD5E1;">
+            Join for instant announcements & team briefing.
+          </div>
+        </div>
+        <a href="${FINFEST_DATA.meta.whatsappGroupUrl}" target="_blank" class="btn btn-gold btn-sm" style="background: #25D366; color: #000; font-weight: 800;">
+          Join WhatsApp ➔
+        </a>
+      </div>
+
       <div class="modal-section-card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.5rem;">
           <h4 style="color: ${evt.color}; margin: 0;">${evt.title}</h4>
@@ -523,9 +538,6 @@ function openRegisterModal(eventParam = '') {
         <button onclick="openRegisterModal('')" class="btn btn-secondary btn-sm" style="width: 100%;">
           ← View Forms for Other 5 Events
         </button>
-        <a href="${FINFEST_DATA.meta.whatsappGroupUrl}" target="_blank" class="btn btn-gold btn-lg" style="width: 100%;">
-          Join Official WhatsApp Group
-        </a>
       </div>
     `;
   } else {
@@ -535,6 +547,22 @@ function openRegisterModal(eventParam = '') {
     if (subtitleEl) subtitleEl.textContent = 'Each event has a separate Google Form. Select your event below:';
 
     bodyContentEl.innerHTML = `
+      <!-- Official WhatsApp Banner at Top of ALL Forms -->
+      <div style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.18) 0%, rgba(18, 140, 126, 0.28) 100%); border: 1px solid rgba(37, 211, 102, 0.45); border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
+        <div>
+          <div style="font-weight: 800; color: #25D366; font-size: 1rem; display: flex; align-items: center; gap: 0.4rem;">
+            💬 Official FINFEST '26 WhatsApp Community
+          </div>
+          <div style="font-size: 0.8rem; color: #E2E8F0; margin-top: 0.25rem;">
+            Join before registering for live announcements, schedules & query resolution.
+          </div>
+        </div>
+        <a href="${FINFEST_DATA.meta.whatsappGroupUrl}" target="_blank" class="btn btn-gold" style="background: #25D366; color: #000; font-weight: 800; border-color: #25D366; flex-shrink: 0;">
+          Join WhatsApp Group ➔
+        </a>
+      </div>
+
+      <!-- 6 Event Forms List -->
       <div style="display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1.25rem;">
         ${FINFEST_DATA.events.map((e, idx) => `
           <div style="background: rgba(4, 10, 24, 0.85); border: 1px solid var(--border-subtle); border-left: 3px solid ${e.color}; border-radius: var(--radius-xs); padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
@@ -561,12 +589,6 @@ function openRegisterModal(eventParam = '') {
             <span>One candidate can register for a maximum of 3 events.</span>
           </li>
         </ul>
-      </div>
-
-      <div style="text-align: center; padding: 0.25rem 0;">
-        <a href="${FINFEST_DATA.meta.whatsappGroupUrl}" target="_blank" class="btn btn-gold btn-lg" style="width: 100%;">
-          Join Official WhatsApp Group
-        </a>
       </div>
     `;
   }
