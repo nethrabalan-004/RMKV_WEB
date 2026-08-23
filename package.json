@@ -1,0 +1,20 @@
+{
+  "name": "finfest-26-web",
+  "version": "1.0.0",
+  "description": "FINFEST '26 Official Website - Ramakrishna Mission Vivekananda College (Autonomous) Shift-2",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y live-server --port=3000 --cors --no-browser",
+    "start": "npx -y serve -l 3000 .",
+    "serve": "python3 -m http.server 3000",
+    "preview": "npx -y serve -l 3000 ."
+  },
+  "keywords": [
+    "finfest",
+    "finance",
+    "ramakrishna-mission-vivekananda-college",
+    "accounting-and-finance"
+  ],
+  "author": "P.G. Department of Accounting & Finance",
+  "license": "ISC"
+}

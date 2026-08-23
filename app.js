@@ -1,0 +1,501 @@
+/**
+ * FINFEST '26 — Interactive Application Controller (Professional Corporate & FinTech Edition)
+ * Handles live countdown, event modal dossiers, dynamic filtering, scroll animations, and navigation.
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initCountdown();
+  renderGeneralRules();
+  renderEvents();
+  renderSchedule();
+  renderDignitaries();
+  renderGuests();
+  renderCoordinators();
+  initScrollAnimations();
+  initNavigation();
+  initModals();
+});
+
+/* ==========================================================================
+   1. Live Countdown Timer
+   ========================================================================== */
+function initCountdown() {
+  const daysEl = document.getElementById('cd-days');
+  const hoursEl = document.getElementById('cd-hours');
+  const minutesEl = document.getElementById('cd-minutes');
+  const secondsEl = document.getElementById('cd-seconds');
+
+  if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+  // Target deadline: 03-09-2026
+  const targetDate = new Date('2026-09-03T23:59:59').getTime();
+
+  function updateTimer() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance < 0) {
+      daysEl.textContent = '00';
+      hoursEl.textContent = '00';
+      minutesEl.textContent = '00';
+      secondsEl.textContent = '00';
+      const noteEl = document.querySelector('.countdown-note');
+      if (noteEl) noteEl.textContent = '⚡ Online registrations closed. Campus check-in starts at 9:00 AM.';
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    daysEl.textContent = String(days).padStart(2, '0');
+    hoursEl.textContent = String(hours).padStart(2, '0');
+    minutesEl.textContent = String(minutes).padStart(2, '0');
+    secondsEl.textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+}
+
+/* ==========================================================================
+   2. Clean Icon Helper (No map-pin icons, sleek minimalist symbols)
+   ========================================================================== */
+function getIconSvg(iconName) {
+  const icons = {
+    'check': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>`,
+    'arrow-right': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`,
+    'clock': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
+    'award': `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
+    'users': `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
+  };
+
+  return icons[iconName] || icons['arrow-right'];
+}
+
+/* ==========================================================================
+   3. Render General Rules Section
+   ========================================================================== */
+function renderGeneralRules() {
+  const container = document.getElementById('rules-grid-container');
+  if (!container || !FINFEST_DATA.generalRules) return;
+
+  container.innerHTML = FINFEST_DATA.generalRules.map((rule, idx) => `
+    <div class="rule-card reveal reveal-delay-${(idx % 3) + 1}">
+      <div class="rule-header-row">
+        <span class="rule-category-pill">${rule.category}</span>
+        <span class="badge badge-outline">#0${idx + 1}</span>
+      </div>
+      <h4>${rule.title}</h4>
+      <p>${rule.text}</p>
+    </div>
+  `).join('');
+}
+
+/* ==========================================================================
+   4. Render Professional Clean Events Grid
+   ========================================================================== */
+function renderEvents(filterCategory = 'all') {
+  const gridContainer = document.getElementById('events-grid-container');
+  const filterContainer = document.getElementById('events-filter-container');
+  if (!gridContainer || !FINFEST_DATA.events) return;
+
+  // Render Filter Buttons once
+  if (filterContainer && filterContainer.children.length === 0) {
+    const categories = ['all', ...new Set(FINFEST_DATA.events.map(e => e.category))];
+    filterContainer.innerHTML = categories.map(cat => `
+      <button class="filter-btn ${cat === 'all' ? 'active' : ''}" data-filter="${cat}">
+        ${cat === 'all' ? 'All 6 Events' : cat}
+      </button>
+    `).join('');
+
+    filterContainer.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderEvents(btn.getAttribute('data-filter'));
+      });
+    });
+  }
+
+  // Filter Events
+  const filteredEvents = filterCategory === 'all'
+    ? FINFEST_DATA.events
+    : FINFEST_DATA.events.filter(e => e.category === filterCategory);
+
+  gridContainer.innerHTML = filteredEvents.map((evt, idx) => `
+    <div class="event-card reveal reveal-delay-${(idx % 3) + 1}" 
+         style="--card-accent: ${evt.color}; --card-glow: ${evt.accentGlow};"
+         onclick="openEventModal('${evt.id}')">
+      
+      <div>
+        <div class="event-card-header">
+          <span class="event-num-tag">EVENT 0${idx + 1}</span>
+          <span class="event-category-badge">${evt.category}</span>
+        </div>
+
+        <h3 class="event-card-title">${evt.title}</h3>
+        <p class="event-card-tagline">${evt.tagline}</p>
+      </div>
+
+      <div>
+        <div class="event-info-strip">
+          <div class="event-info-row">
+            <span class="event-info-label">Timing</span>
+            <span class="event-info-value">${evt.timing}</span>
+          </div>
+          <div class="event-info-row">
+            <span class="event-info-label">Venue</span>
+            <span class="event-info-value">${evt.venue}</span>
+          </div>
+          <div class="event-info-row">
+            <span class="event-info-label">Participation</span>
+            <span class="event-info-value">${evt.teamSize}</span>
+          </div>
+        </div>
+
+        <div class="event-card-footer">
+          <span class="badge badge-glow-cyan">${evt.badge}</span>
+          <span class="event-view-cta">
+            View Details ${getIconSvg('arrow-right')}
+          </span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  initScrollAnimations();
+}
+
+/* ==========================================================================
+   5. Clean Professional Event Dossier Modal
+   ========================================================================== */
+function openEventModal(eventId) {
+  const evt = FINFEST_DATA.events.find(e => e.id === eventId);
+  if (!evt) return;
+
+  const modal = document.getElementById('event-modal');
+  const titleEl = document.getElementById('modal-event-title');
+  const tagEl = document.getElementById('modal-event-tag');
+  const bodyEl = document.getElementById('modal-event-body');
+  const footerActionEl = document.getElementById('modal-event-footer-action');
+
+  if (!modal || !bodyEl) return;
+
+  titleEl.textContent = evt.title;
+  tagEl.innerHTML = `
+    <span class="badge badge-glow-gold">${evt.badge}</span>
+    <span class="badge badge-outline">${evt.category}</span>
+  `;
+
+  // Build Executive Modal Dossier
+  bodyEl.innerHTML = `
+    <!-- Key Matrix Strip -->
+    <div class="modal-key-matrix">
+      <div class="modal-matrix-box">
+        <span class="matrix-label">Scheduled Time</span>
+        <span class="matrix-value" style="color: var(--accent-cyan);">${evt.timing}</span>
+      </div>
+      <div class="modal-matrix-box">
+        <span class="matrix-label">Hall / Venue</span>
+        <span class="matrix-value">${evt.venue}</span>
+      </div>
+      <div class="modal-matrix-box">
+        <span class="matrix-label">Team Structure</span>
+        <span class="matrix-value">${evt.teamSize}</span>
+      </div>
+      <div class="modal-matrix-box">
+        <span class="matrix-label">Session Duration</span>
+        <span class="matrix-value">${evt.duration}</span>
+      </div>
+    </div>
+
+    <!-- Executive Overview -->
+    <div class="modal-section-card">
+      <h4 style="color: ${evt.color};">Executive Summary & Objective</h4>
+      <p style="color: #CBD5E1; font-size: 0.94rem; line-height: 1.7;">${evt.overview}</p>
+    </div>
+
+    <!-- Competition Pipeline -->
+    <div class="modal-section-card">
+      <h4 style="color: ${evt.color};">Competition Pipeline & Rounds</h4>
+      <div>
+        ${evt.format.map(f => `
+          <div class="stage-step-item">
+            <h5>${f.phase}</h5>
+            <p>${f.desc}</p>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- Scoring Rubric -->
+    <div class="modal-section-card">
+      <h4 style="color: ${evt.color};">Evaluation Criteria & Weightage</h4>
+      <div>
+        ${evt.criteria.map(c => `
+          <div class="criteria-row-item">
+            <div>
+              <strong>${c.label}</strong>
+              <p>${c.desc}</p>
+            </div>
+            <span class="criteria-weight-tag">${c.weight}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- Compliance & Regulations -->
+    <div class="modal-section-card">
+      <h4 style="color: ${evt.color};">Event Rules & Compliance</h4>
+      <ul class="modal-rules-checklist">
+        ${evt.rules.map(r => `
+          <li>
+            ${getIconSvg('check')}
+            <span>${r}</span>
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+  `;
+
+  // Action Button
+  if (footerActionEl) {
+    footerActionEl.innerHTML = `
+      <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; width: 100%; justify-content: space-between; align-items: center;">
+        <div style="font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono);">
+          Registration closes: 03-09-2026
+        </div>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <a href="#register" onclick="closeEventModal(); openRegisterModal('${evt.title}');" class="btn btn-primary">
+            Register for ${evt.title} ${getIconSvg('arrow-right')}
+          </a>
+          <a href="${FINFEST_DATA.meta.ruleBookUrl}" target="_blank" class="btn btn-secondary btn-sm">
+            Official Rule Book PDF
+          </a>
+        </div>
+      </div>
+    `;
+  }
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEventModal() {
+  const modal = document.getElementById('event-modal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+/* ==========================================================================
+   6. Render Schedule Timeline
+   ========================================================================== */
+function renderSchedule() {
+  const container = document.getElementById('timeline-container');
+  if (!container || !FINFEST_DATA.schedule) return;
+
+  container.innerHTML = FINFEST_DATA.schedule.map((item, idx) => `
+    <div class="timeline-item reveal reveal-delay-${(idx % 2) + 1}">
+      <div class="timeline-marker"></div>
+      <div class="timeline-card">
+        <span class="timeline-time">${item.time}</span>
+        <h4>${item.title}</h4>
+        <div class="timeline-venue-badge">Venue: ${item.venue}</div>
+        <p>${item.desc}</p>
+        ${item.details ? `
+          <div class="timeline-sub-events">
+            ${item.details.map(d => `<div>• ${d}</div>`).join('')}
+          </div>
+        ` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ==========================================================================
+   7. Render Dignitaries & Chief Guests
+   ========================================================================== */
+function renderDignitaries() {
+  const container = document.getElementById('dignitaries-grid-container');
+  if (!container || !FINFEST_DATA.dignitaries) return;
+
+  container.innerHTML = FINFEST_DATA.dignitaries.map((d, idx) => `
+    <div class="dignitary-card reveal reveal-delay-${(idx % 3) + 1}">
+      <div class="dignitary-avatar-wrap">
+        ${getIconSvg('award')}
+      </div>
+      <div class="dignitary-role">${d.role}</div>
+      <h4>${d.name}</h4>
+      <p style="font-size: 0.85rem; color: #fff; font-weight: 500;">${d.designation}</p>
+      <div class="dignitary-inst">${d.institution}</div>
+    </div>
+  `).join('');
+}
+
+function renderGuests() {
+  const container = document.getElementById('chief-guests-container');
+  if (!container || !FINFEST_DATA.chiefGuests) return;
+
+  container.innerHTML = FINFEST_DATA.chiefGuests.map((g, idx) => `
+    <div class="guest-card reveal reveal-delay-${idx + 1}">
+      <div class="guest-title-wrap">
+        <span class="badge badge-glow-cyan" style="margin-bottom: 0.5rem;">${g.type}</span>
+        <h4>${g.name}</h4>
+        <p>${g.title}</p>
+        <div class="guest-org">${g.organization}</div>
+      </div>
+      <p class="guest-bio">${g.bio}</p>
+    </div>
+  `).join('');
+}
+
+/* ==========================================================================
+   8. Render Footer Coordinators
+   ========================================================================== */
+function renderCoordinators() {
+  const staffContainer = document.getElementById('faculty-coordinators');
+  const studentContainer = document.getElementById('student-coordinators');
+
+  if (staffContainer && FINFEST_DATA.coordinators.faculty) {
+    staffContainer.innerHTML = FINFEST_DATA.coordinators.faculty.map(f => `
+      <div class="coordinator-card">
+        <h5>${f.name}</h5>
+        <p>${f.designation}</p>
+        <a href="mailto:${f.email}">✉ ${f.email}</a>
+      </div>
+    `).join('');
+  }
+
+  if (studentContainer && FINFEST_DATA.coordinators.student) {
+    studentContainer.innerHTML = FINFEST_DATA.coordinators.student.map(s => `
+      <div class="coordinator-card">
+        <h5>${s.name}</h5>
+        <p>${s.role}</p>
+        <a href="mailto:${s.email}">✉ ${s.email}</a>
+      </div>
+    `).join('');
+  }
+}
+
+/* ==========================================================================
+   9. Best-in-Class Scroll Reveal Observer
+   ========================================================================== */
+function initScrollAnimations() {
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+/* ==========================================================================
+   10. Navigation & Mobile Drawer
+   ========================================================================== */
+function initNavigation() {
+  const header = document.querySelector('.site-header');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileNav = document.getElementById('mobile-nav');
+  const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 25) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  if (menuToggle && mobileNav) {
+    menuToggle.addEventListener('click', () => {
+      menuToggle.classList.toggle('active');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Active link scroll spy
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    const scrollY = window.pageYOffset;
+    sections.forEach(current => {
+      const sectionHeight = current.offsetHeight;
+      const sectionTop = current.offsetTop - 120;
+      const sectionId = current.getAttribute('id');
+      const targetNav = document.querySelector(`.nav-link[href*="${sectionId}"]`);
+
+      if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        targetNav?.classList.add('active');
+      } else {
+        targetNav?.classList.remove('active');
+      }
+    });
+  }, { passive: true });
+}
+
+/* ==========================================================================
+   11. Modal Setup Helpers
+   ========================================================================== */
+function initModals() {
+  const modal = document.getElementById('event-modal');
+  const closeBtn = document.getElementById('modal-close-btn');
+
+  if (closeBtn) closeBtn.addEventListener('click', closeEventModal);
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeEventModal();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeEventModal();
+      closeRegisterModal();
+    }
+  });
+}
+
+function openRegisterModal(eventName = '') {
+  const regModal = document.getElementById('register-modal');
+  const regSubtitle = document.getElementById('reg-modal-subtitle');
+  if (regSubtitle) {
+    regSubtitle.textContent = eventName ? `Event Selected: ${eventName}` : 'Complete your online registration below';
+  }
+  if (regModal) {
+    regModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeRegisterModal() {
+  const regModal = document.getElementById('register-modal');
+  if (regModal) {
+    regModal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+window.openEventModal = openEventModal;
+window.closeEventModal = closeEventModal;
+window.openRegisterModal = openRegisterModal;
+window.closeRegisterModal = closeRegisterModal;

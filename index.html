@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>FINFEST '26 | Ramakrishna Mission Vivekananda College (Autonomous) Shift-2</title>
+  <meta name="description" content="FINFEST '26 — Official Inter-Collegiate Academic Meet organized by the Post Graduate Department of Accounting & Finance, Ramakrishna Mission Vivekananda College (Autonomous) Shift-2, Mylapore, Chennai.">
+  <meta name="keywords" content="Finfest 2026, Ramakrishna Mission Vivekananda College, Mylapore Chennai, Accounting and Finance, Stock Wars, Business Proposal, Forensic Treasure Hunt, Finance Quiz">
+  <meta name="theme-color" content="#040814">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="FINFEST '26 | Inter-Collegiate Academic Meet">
+  <meta property="og:description" content="Ramakrishna Mission Vivekananda College Shift-2 presents FINFEST '26. Premier collegiate finance meet featuring 6 championship events.">
+  <meta property="og:type" content="website">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- High Performance Ambient Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <div class="app-wrapper">
+
+    <!-- Wall Street Ticker Tape -->
+    <aside class="ticker-tape" aria-label="Financial News and Events Marquee">
+      <div class="ticker-track">
+        <div class="ticker-item">
+          <span class="badge-cyan">FINFEST '26</span>
+          <span>AN INTER-COLLEGIATE ACADEMIC MEET</span>
+        </div>
+        <div class="ticker-item">
+          <span class="badge-gold">REGISTRATION DEADLINE:</span>
+          <strong>03-09-2026</strong>
+        </div>
+        <div class="ticker-item">
+          <span class="badge-green">VENUE:</span>
+          <span>RAMAKRISHNA MISSION VIVEKANANDA COLLEGE (AUTONOMOUS) SHIFT-2, MYLAPORE</span>
+        </div>
+        <div class="ticker-item">
+          <span class="badge-cyan">STOCK WARS:</span>
+          <span>1:00 PM – 3:30 PM (RKN HALL)</span>
+        </div>
+        <div class="ticker-item">
+          <span class="badge-green">BUSINESS PROPOSAL:</span>
+          <span>2:20 PM – 5:00 PM (SARADA HALL)</span>
+        </div>
+        <div class="ticker-item">
+          <span class="badge-gold">FORENSIC TREASURE HUNT:</span>
+          <span>CAMPUS WIDE (2:20 PM)</span>
+        </div>
+        <div class="ticker-item">
+          <span class="badge-green">OVERALL CHAMPIONS TROPHY:</span>
+          <span>AWARDED AT VALEDICTORY (5:30 PM)</span>
+        </div>
+        <!-- Loop Clone -->
+        <div class="ticker-item">
+          <span class="badge-cyan">FINFEST '26</span>
+          <span>AN INTER-COLLEGIATE ACADEMIC MEET</span>
+        </div>
+        <div class="ticker-item">
+          <span class="badge-gold">REGISTRATION DEADLINE:</span>
+          <strong>03-09-2026</strong>
+        </div>
+        <div class="ticker-item">
+          <span class="badge-green">VENUE:</span>
+          <span>RAMAKRISHNA MISSION VIVEKANANDA COLLEGE (AUTONOMOUS) SHIFT-2, MYLAPORE</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Header Navigation -->
+    <header class="site-header">
+      <div class="container header-container">
+        <a href="#hero" class="brand-wrapper" aria-label="FINFEST 2026 Home">
+          <div class="brand-emblem">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>FINFEST <span>'26</span></h1>
+            <p>RKM VIVEKANANDA COLLEGE (SHIFT-2)</p>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="#hero" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About College</a></li>
+            <li><a href="#rules" class="nav-link">Rules</a></li>
+            <li><a href="#events" class="nav-link">6 Events</a></li>
+            <li><a href="#schedule" class="nav-link">Schedule</a></li>
+            <li><a href="#guests" class="nav-link">Guests</a></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions">
+          <button onclick="openRegisterModal()" class="btn btn-primary btn-sm" id="header-reg-btn">
+            Register Now
+          </button>
+          <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Drawer Menu -->
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile Navigation">
+      <ul class="mobile-nav-links">
+        <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+        <li><a href="#about" class="mobile-nav-link">About College & Dept</a></li>
+        <li><a href="#rules" class="mobile-nav-link">General Rules</a></li>
+        <li><a href="#events" class="mobile-nav-link">All 6 Events & Timings</a></li>
+        <li><a href="#schedule" class="mobile-nav-link">Event Schedule</a></li>
+        <li><a href="#guests" class="mobile-nav-link">Chief Guests & Panelists</a></li>
+        <li><a href="#register" class="mobile-nav-link">Registration Hub</a></li>
+      </ul>
+      <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+        <button onclick="openRegisterModal()" class="btn btn-primary btn-lg" style="width: 100%;">
+          Register for FINFEST '26
+        </button>
+        <a href="data/Finfest'26 Rule Book.pdf" target="_blank" class="btn btn-secondary" style="width: 100%;">
+          Download Official Rule Book PDF
+        </a>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+      <!-- ==========================================================================
+           Hero Section (Grand College Presentation & Sleek FinTech Layout)
+           ========================================================================== -->
+      <section id="hero" class="hero-section">
+        <div class="hero-glow-orb"></div>
+        <div class="container hero-content">
+          
+          <!-- GRAND COLLEGE HEADER (User Request: Bigger college name, prominent layout) -->
+          <div class="hero-college-showcase reveal">
+            <div class="hero-college-subhead">Unit of Ramakrishna Mission Vidyapith, Chennai</div>
+            <h2 class="hero-college-title">Ramakrishna Mission Vivekananda College</h2>
+            <div class="hero-dept-highlight">POST GRADUATE DEPARTMENT OF ACCOUNTING & FINANCE</div>
+            <div class="hero-college-meta">
+              <span class="badge badge-glow-cyan">Autonomous Institution</span>
+              <span class="badge badge-outline">Evening Shift - 2</span>
+              <span class="badge badge-glow-gold">Mylapore, Chennai - 600 004</span>
+            </div>
+          </div>
+
+          <!-- Hero Main Event Titles -->
+          <div class="hero-event-wrap reveal reveal-delay-1">
+            <h1 class="hero-event-title">FINFEST '26</h1>
+            <p class="hero-event-subtitle">An Inter-Collegiate Academic Meet</p>
+          </div>
+
+          <!-- Swami Vivekananda Quote Card -->
+          <div class="hero-quote-card reveal reveal-delay-2">
+            “We are what our thoughts have made us; so take care of what you think.”
+            <span>— Swami Vivekananda</span>
+          </div>
+
+          <!-- Countdown Timer Widget -->
+          <div class="countdown-container reveal reveal-delay-3" id="countdown-widget">
+            <div class="countdown-header">
+              <span>Online Registration Closes In</span>
+            </div>
+            <div class="countdown-grid">
+              <div class="countdown-box">
+                <span class="countdown-num" id="cd-days">00</span>
+                <span class="countdown-label">Days</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="cd-hours">00</span>
+                <span class="countdown-label">Hours</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="cd-minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+              </div>
+              <div class="countdown-box">
+                <span class="countdown-num" id="cd-seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+              </div>
+            </div>
+            <div class="countdown-note">
+              Registration Closing Date: <strong>03-09-2026</strong> • Reporting by <strong>9:00 AM</strong>
+            </div>
+          </div>
+
+          <!-- Hero Action CTAs -->
+          <div class="hero-cta-group reveal reveal-delay-4">
+            <button onclick="openRegisterModal()" class="btn btn-primary btn-lg" id="hero-register-cta">
+              Register Now →
+            </button>
+            <a href="#events" class="btn btn-secondary btn-lg" id="hero-events-cta">
+              Explore 6 Events
+            </a>
+            <a href="data/Finfest'26 Rule Book.pdf" target="_blank" class="btn btn-secondary btn-lg">
+              Official Rule Book PDF
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           About College & Department Section
+           ========================================================================== */ -->
+      <section id="about" class="section">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-card reveal">
+              <span class="section-tag">Institution Profile</span>
+              <h3>Ramakrishna Mission Vivekananda College</h3>
+              <p>
+                The Ramakrishna Mission Vivekananda College is a unit of Ramakrishna Mission Vidyapith, Chennai (a branch center of Ramakrishna Mission, Belur Math, West Bengal). It occupies a place of pre-eminence among premier educational institutions in India.
+              </p>
+              <p>
+                Imbued with a sacred ambience, the institution has been endeavouring for more than 75 years to impart value-based, man-making, and character-building education as envisaged by Swami Vivekananda — nurturing intellectual, moral, and spiritual excellence.
+              </p>
+              <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <span class="badge badge-glow-cyan">Autonomous Status</span>
+                <span class="badge badge-outline">Evening Shift - 2</span>
+                <span class="badge badge-glow-gold">P.G. Dept. of Accounting & Finance</span>
+              </div>
+            </div>
+
+            <div class="stats-grid reveal reveal-delay-1">
+              <div class="stat-box">
+                <div class="stat-num">6</div>
+                <div class="stat-label">Championship Events</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">75+</div>
+                <div class="stat-label">Years of Heritage</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">500+</div>
+                <div class="stat-label">Collegiate Competitors</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">🏆</div>
+                <div class="stat-label">Overall Rolling Trophy</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           General Rules & Guidelines Section
+           ========================================================================== */ -->
+      <section id="rules" class="section" style="background: rgba(8, 16, 36, 0.45);">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-tag">Important Guidelines</span>
+            <h2 class="section-title">General <span>Rules & Code of Conduct</span></h2>
+            <p class="section-desc">
+              All contingents and participants must strictly adhere to the academic rules and registration guidelines.
+            </p>
+          </div>
+
+          <div class="rules-grid" id="rules-grid-container">
+            <!-- Populated dynamically by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           All 6 Events Section (Clean Executive Cards & Timings)
+           ========================================================================== */ -->
+      <section id="events" class="section">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-tag">Academic Arena</span>
+            <h2 class="section-title">Competitions & <span>Event Details</span></h2>
+            <p class="section-desc">
+              Click any event card to access the full competition dossier, round progression, evaluation criteria, and venue timings.
+            </p>
+          </div>
+
+          <!-- Category Filter Bar -->
+          <div class="events-filter-bar reveal reveal-delay-1" id="events-filter-container">
+            <!-- Populated dynamically by app.js -->
+          </div>
+
+          <!-- 6 Events Grid -->
+          <div class="events-grid" id="events-grid-container">
+            <!-- Populated dynamically by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           Schedule & Timeline Section
+           ========================================================================== */ -->
+      <section id="schedule" class="section" style="background: rgba(8, 16, 36, 0.45);">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-tag">Event Agenda</span>
+            <h2 class="section-title">Schedule & <span>Venue Timings</span></h2>
+            <p class="section-desc">
+              Official timeline from morning registration to the grand evening valedictory ceremony.
+            </p>
+          </div>
+
+          <div class="timeline-wrap" id="timeline-container">
+            <!-- Populated dynamically by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           Dignitaries, Chief Guests & Panelists
+           ========================================================================== */ -->
+      <section id="guests" class="section">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="section-tag">Patrons & Luminaries</span>
+            <h2 class="section-title">Dignitaries & <span>Chief Guests</span></h2>
+            <p class="section-desc">
+              Distinguished monastic leaders, institutional heads, corporate executives, and chartered accountants.
+            </p>
+          </div>
+
+          <!-- Dignitaries Grid -->
+          <div class="dignitary-grid" id="dignitaries-grid-container">
+            <!-- Populated dynamically by app.js -->
+          </div>
+
+          <!-- Chief Guests Showcase -->
+          <div class="section-header reveal" style="margin-bottom: 2rem;">
+            <span class="section-tag">Keynote Addresses</span>
+            <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: #fff;">Inaugural & Valedictory Leaders</h3>
+          </div>
+          <div class="chief-guests-grid" id="chief-guests-container">
+            <!-- Populated dynamically by app.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================================================
+           Registration Hub CTA Section
+           ========================================================================== */ -->
+      <section id="register" class="section">
+        <div class="container">
+          <div class="reg-hub-card reveal">
+            <span class="badge badge-glow-gold" style="margin-bottom: 1rem;">Limited Team Quotas</span>
+            <h2 class="reg-hub-title">Register for FINFEST '26</h2>
+            <p class="reg-hub-desc">
+              Each candidate must register individually online before <strong>03-09-2026</strong>. One candidate can participate in up to 3 events.
+            </p>
+            <div class="reg-actions-row">
+              <button onclick="openRegisterModal()" class="btn btn-primary btn-lg" id="hub-register-btn">
+                Online Registration Form →
+              </button>
+              <a href="https://chat.whatsapp.com" target="_blank" class="btn btn-gold btn-lg" id="hub-whatsapp-btn">
+                Join WhatsApp Group
+              </a>
+              <a href="data/Finfest'26 Rule Book.pdf" target="_blank" class="btn btn-secondary btn-lg">
+                Download Official Rule Book
+              </a>
+            </div>
+            <div class="reg-perks">
+              <span class="reg-perk-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Certificates for All Registered Delegates
+              </span>
+              <span class="reg-perk-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Exclusive FINFEST '26 Delegate Kit
+              </span>
+              <span class="reg-perk-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Overall Champions Rolling Trophy
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ==========================================================================
+         Footer & Coordinator Directory
+         ========================================================================== */ -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          
+          <!-- Column 1: College Info -->
+          <div class="footer-col footer-about">
+            <h4>FINFEST '26</h4>
+            <p>
+              Ramakrishna Mission Vivekananda College (Autonomous) Evening Shift - 2, Mylapore, Chennai - 600 004.
+            </p>
+            <p>
+              Organized by the Post Graduate Department of Accounting & Finance. Imparting character-building education for over 75 years.
+            </p>
+            <div style="font-size: 0.8rem; color: var(--accent-gold);">
+              “We are what our thoughts have made us”
+            </div>
+          </div>
+
+          <!-- Column 2: Quick Links -->
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links-list">
+              <li><a href="#hero">Home</a></li>
+              <li><a href="#about">About Institution</a></li>
+              <li><a href="#rules">General Rules</a></li>
+              <li><a href="#events">6 Academic Events</a></li>
+              <li><a href="#schedule">Schedule & Venues</a></li>
+              <li><a href="#guests">Chief Guests</a></li>
+              <li><a href="data/Finfest'26 Rule Book.pdf" target="_blank">Rule Book PDF</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Faculty Coordinators -->
+          <div class="footer-col">
+            <h4>Faculty Conveners</h4>
+            <div id="faculty-coordinators">
+              <!-- Populated dynamically by app.js -->
+            </div>
+          </div>
+
+          <!-- Column 4: Student Council & Grievances -->
+          <div class="footer-col">
+            <h4>Student Coordinators</h4>
+            <div id="student-coordinators">
+              <!-- Populated dynamically by app.js -->
+            </div>
+            <div style="margin-top: 1rem; font-size: 0.76rem; color: var(--text-subtle);">
+              <strong>Grievances:</strong> Any grievances must be reported to the Grievances Committee prior to announcement of results.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+          <div>
+            © 2026 P.G. Department of Accounting & Finance, Ramakrishna Mission Vivekananda College (Autonomous). All rights reserved.
+          </div>
+          <div>
+            FINFEST '26 • Shift - 2
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ==========================================================================
+       Executive Event Details Modal / Dossier
+       ========================================================================== */ -->
+  <div class="modal-overlay" id="event-modal" role="dialog" aria-modal="true" aria-labelledby="modal-event-title">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <div>
+          <div id="modal-event-tag" style="display: flex; gap: 0.5rem; margin-bottom: 0.4rem;"></div>
+          <h3 id="modal-event-title" style="font-family: var(--font-display); font-size: 1.65rem; color: #fff;"></h3>
+        </div>
+        <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-event-body">
+        <!-- Injected dynamically by openEventModal() -->
+      </div>
+      <div class="modal-footer" id="modal-event-footer-action">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Registration Modal
+       ========================================================================== */ -->
+  <div class="modal-overlay" id="register-modal" role="dialog" aria-modal="true" aria-labelledby="reg-modal-title">
+    <div class="modal-dialog" style="max-width: 600px;">
+      <div class="modal-header">
+        <div>
+          <span class="badge badge-glow-gold" style="margin-bottom: 0.35rem;">Online Registration</span>
+          <h3 id="reg-modal-title" style="font-family: var(--font-display); font-size: 1.5rem; color: #fff;">
+            Register for FINFEST '26
+          </h3>
+          <p id="reg-modal-subtitle" style="font-size: 0.85rem; color: var(--accent-cyan); margin-top: 0.2rem;"></p>
+        </div>
+        <button class="modal-close-btn" onclick="closeRegisterModal()" aria-label="Close Registration Modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section-card">
+          <h4 style="color: var(--accent-cyan);">Registration Checklist</h4>
+          <ul class="modal-rules-checklist">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Each participant must register separately at the individual level.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>One candidate can register for a maximum of 3 events.</span>
+            </li>
+            <li>
+              <svg width="16" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Original College ID cards are mandatory on event day.</span>
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <span>Mandatory reporting time: Prior to 9:00 AM at registration desk.</span>
+            </li>
+          </ul>
+        </div>
+        <div style="text-align: center; padding: 0.5rem 0;">
+          <a href="https://forms.google.com" target="_blank" class="btn btn-primary btn-lg" style="width: 100%; margin-bottom: 0.75rem;">
+            Proceed to Google Form Registration →
+          </a>
+          <a href="https://chat.whatsapp.com" target="_blank" class="btn btn-gold" style="width: 100%;">
+            Join Official WhatsApp Group
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="data.js"></script>
+  <script src="background-animation.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>
