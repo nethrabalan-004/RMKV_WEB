@@ -123,11 +123,12 @@ function renderEvents() {
       
       <div>
         <div class="event-card-header">
-          <div style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;">
-            <span class="event-num-tag">EVENT 0${idx + 1}</span>
-            <span class="badge badge-glow-cyan" style="font-size: 0.68rem; padding: 0.2rem 0.5rem;">${evt.badge}</span>
-          </div>
+          <span class="event-num-tag">EVENT 0${idx + 1}</span>
           <span class="event-category-badge">${evt.category}</span>
+        </div>
+
+        <div class="event-badge-subhead">
+          <span class="badge badge-glow-cyan" style="font-size: 0.7rem; padding: 0.2rem 0.6rem;">${evt.badge}</span>
         </div>
 
         <h3 class="event-card-title">${evt.title}</h3>
@@ -135,18 +136,18 @@ function renderEvents() {
       </div>
 
       <div>
-        <div class="event-info-strip">
-          <div class="event-info-row">
-            <span class="event-info-label">Timing</span>
-            <span class="event-info-value">${evt.timing}</span>
+        <div class="event-info-mini-grid">
+          <div class="event-info-box">
+            <span class="info-box-label">Timing</span>
+            <span class="info-box-val" style="color: var(--accent-cyan);">${evt.timing}</span>
           </div>
-          <div class="event-info-row">
-            <span class="event-info-label">Venue</span>
-            <span class="event-info-value">${evt.venue}</span>
+          <div class="event-info-box">
+            <span class="info-box-label">Venue</span>
+            <span class="info-box-val">${evt.venue}</span>
           </div>
-          <div class="event-info-row">
-            <span class="event-info-label">Participation</span>
-            <span class="event-info-value">${evt.teamSize}</span>
+          <div class="event-info-box" style="grid-column: 1 / -1;">
+            <span class="info-box-label">Participation</span>
+            <span class="info-box-val">${evt.teamSize}</span>
           </div>
         </div>
 

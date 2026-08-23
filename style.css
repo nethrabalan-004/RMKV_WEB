@@ -1342,7 +1342,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.event-badge-subhead {
+  display: flex;
+  margin-bottom: 0.75rem;
 }
 
 .event-num-tag {
@@ -1381,7 +1387,7 @@ body {
 .event-card-tagline {
   font-size: 0.88rem;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1389,35 +1395,39 @@ body {
   overflow: hidden;
 }
 
-/* Clean Info Row */
-.event-info-strip {
+/* Clean Structured Key-Value Mini Grid */
+.event-info-mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.15rem;
+}
+
+.event-info-box {
+  background: rgba(4, 10, 24, 0.75);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 0.6rem 0.75rem;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  padding: 1rem 0;
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 1.5rem;
+  gap: 0.2rem;
 }
 
-.event-info-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 0.82rem;
+.info-box-label {
   font-family: var(--font-mono);
-}
-
-.event-info-label {
+  font-size: 0.65rem;
   color: var(--text-subtle);
   text-transform: uppercase;
-  font-weight: 600;
   letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
-.event-info-value {
+.info-box-val {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
   color: #F1F5F9;
   font-weight: 600;
+  line-height: 1.3;
 }
 
 .event-card-footer {
