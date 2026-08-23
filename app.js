@@ -43,8 +43,8 @@ function initCountdown() {
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
-  // Target deadline: 09-09-2026 (September 9, 2026)
-  const targetDate = new Date('2026-09-09T23:59:59').getTime();
+  // Target: Event Start on 09-09-2026 at 09:00 AM (September 9, 2026)
+  const targetDate = new Date(FINFEST_DATA?.meta?.eventStartIso || '2026-09-09T09:00:00').getTime();
 
   function updateTimer() {
     const now = new Date().getTime();
@@ -56,7 +56,7 @@ function initCountdown() {
       minutesEl.textContent = '00';
       secondsEl.textContent = '00';
       const noteEl = document.querySelector('.countdown-note');
-      if (noteEl) noteEl.textContent = '⚡ Online registrations closed. Campus check-in starts at 9:00 AM.';
+      if (noteEl) noteEl.textContent = '⚡ FINFEST \'26 is Live! Event in progress.';
       return;
     }
 
@@ -257,7 +257,7 @@ function openEventModal(eventId) {
     footerActionEl.innerHTML = `
       <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; width: 100%; justify-content: space-between; align-items: center;">
         <div style="font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono);">
-          Registration closes: 09-09-2026
+          Registration closes: 03-09-2026 • Event: 09-09-2026
         </div>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <a href="${evt.regFormUrl}" target="_blank" class="btn btn-primary">

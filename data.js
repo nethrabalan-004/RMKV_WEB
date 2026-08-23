@@ -17,8 +17,10 @@ const FINFEST_DATA = {
     eventName: "FINFEST '26",
     tagline: "An Inter-Collegiate Academic Meet",
     theme: "Where Financial Acumen Meets Strategic Vision",
-    date: "9th September 2026", // Event Date
-    regDeadline: "2026-09-09T23:59:59", // 09-09-2026 registration closing date
+    date: "9th September 2026", // Event Date (09-09-2026)
+    eventStartIso: "2026-09-09T09:00:00", // Event Kickoff Date & Time for Countdown Timer
+    regDeadline: "2026-09-03T23:59:59", // Registration Closes on 3rd September 2026
+    regDeadlineDisplay: "3rd September 2026",
     reportTime: "Prior to 9:00 AM",
     totalEvents: 6,
     registrationUrl: "#register",
@@ -128,7 +130,7 @@ const FINFEST_DATA = {
       category: "Registration",
       icon: "clipboard-check",
       title: "Individual & Team Registration",
-      text: "Registration shall be done online via Google Form on or before 09-09-2026. Each participant must register separately at the individual level."
+      text: "Registration shall be done online via Google Form on or before 03-09-2026 (September 3, 2026). Each participant must register separately at the individual level."
     },
     {
       category: "Event Limit",
