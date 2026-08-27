@@ -26,6 +26,7 @@ const FINFEST_DATA = {
     regDeadlineDisplay: "03-09-2026",
     reportTime: "Prior to 1:00 PM",
     venueDisplay: "College Campus, Mylapore, Chennai - 04",
+    officialEmail: "finfest.26.rkmvc@gmail.com",
     totalEvents: 6,
     registrationUrl: "#register",
     ruleBookUrl: "data/Finfest'26 Rule Book.pdf"
@@ -571,7 +572,7 @@ const FINFEST_DATA = {
         name: "Dr. V. Manikantan",
         designation: "Head of the Department & Shift-2 Joint Coordinator",
         phone: "+91 94440 00000",
-        email: "hod.acctfin@rkmvc.ac.in"
+        email: "finfest.26.rkmvc@gmail.com"
       }
     ],
     student: [
@@ -579,13 +580,13 @@ const FINFEST_DATA = {
         name: "Secretary - Student Council",
         role: "Overall Student Coordinator",
         phone: "+91 91234 56789",
-        email: "finfest26@rkmvc.ac.in"
+        email: "finfest.26.rkmvc@gmail.com"
       },
       {
         name: "Joint Secretary - Finfest '26",
         role: "Event Logistics & Registrations",
         phone: "+91 98765 43210",
-        email: "registration.finfest@rkmvc.ac.in"
+        email: "finfest.26.rkmvc@gmail.com"
       }
     ]
   },
