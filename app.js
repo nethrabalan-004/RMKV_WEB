@@ -1,6 +1,6 @@
 /**
- * FINFEST '26 — Interactive Application Controller (Professional Corporate & FinTech Edition)
- * Handles live countdown, event modal dossiers, dynamic filtering, scroll animations, and navigation.
+ * FINFEST '26 — Interactive Application Controller (Official Rule Book Edition)
+ * Handles live countdown, event modal dossiers, dynamic filtering, scroll animations, and registration forms.
  */
 
 // Disable automatic browser scroll restoration so page ALWAYS loads at the very top
@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
 });
 
 /* ==========================================================================
-   1. Live Countdown Timer
+   1. Live Countdown Timer (Target: 09-09-2026 at 2:00 PM)
    ========================================================================== */
 function initCountdown() {
   const daysEl = document.getElementById('cd-days');
@@ -43,8 +43,8 @@ function initCountdown() {
 
   if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
-  // Target: Event Start on 09-09-2026 at 09:00 AM (September 9, 2026)
-  const targetDate = new Date(FINFEST_DATA?.meta?.eventStartIso || '2026-09-09T09:00:00').getTime();
+  // Target: Event Start on 09-09-2026 at 2:00 PM (14:00:00)
+  const targetDate = new Date(FINFEST_DATA?.meta?.eventStartIso || '2026-09-09T14:00:00').getTime();
 
   function updateTimer() {
     const now = new Date().getTime();
@@ -56,7 +56,7 @@ function initCountdown() {
       minutesEl.textContent = '00';
       secondsEl.textContent = '00';
       const noteEl = document.querySelector('.countdown-note');
-      if (noteEl) noteEl.textContent = '⚡ FINFEST \'26 is Live! Event in progress.';
+      if (noteEl) noteEl.textContent = '⚡ FINFEST \'26 is Live! The 6 Challenges are underway.';
       return;
     }
 
@@ -76,7 +76,7 @@ function initCountdown() {
 }
 
 /* ==========================================================================
-   2. Clean Icon Helper (No map-pin icons, sleek minimalist symbols)
+   2. Clean Icon Helper
    ========================================================================== */
 function getIconSvg(iconName) {
   const icons = {
@@ -101,7 +101,7 @@ function renderGeneralRules() {
     <div class="rule-card reveal reveal-delay-${(idx % 3) + 1}">
       <div class="rule-header-row">
         <span class="rule-category-pill">${rule.category}</span>
-        <span class="badge badge-outline">#0${idx + 1}</span>
+        <span class="badge badge-outline">RULE #${idx < 9 ? '0' + (idx + 1) : (idx + 1)}</span>
       </div>
       <h4>${rule.title}</h4>
       <p>${rule.text}</p>
@@ -110,7 +110,7 @@ function renderGeneralRules() {
 }
 
 /* ==========================================================================
-   4. Render Professional Clean Events Grid
+   4. Render The 6 Challenges Grid
    ========================================================================== */
 function renderEvents() {
   const gridContainer = document.getElementById('events-grid-container');
@@ -123,12 +123,13 @@ function renderEvents() {
       
       <div>
         <div class="event-card-header">
-          <span class="event-num-tag">EVENT 0${idx + 1}</span>
+          <span class="event-num-tag">CHALLENGE 0${idx + 1}</span>
           <span class="event-category-badge">${evt.category}</span>
         </div>
 
-        <div class="event-badge-subhead">
+        <div class="event-badge-subhead" style="display: flex; gap: 0.4rem; align-items: center; margin-bottom: 0.4rem;">
           <span class="badge badge-glow-cyan" style="font-size: 0.7rem; padding: 0.2rem 0.6rem;">${evt.badge}</span>
+          ${evt.subtitle ? `<span style="font-size: 0.75rem; color: var(--accent-gold); font-weight: 700; font-family: var(--font-mono); text-transform: uppercase;">“${evt.subtitle}”</span>` : ''}
         </div>
 
         <h3 class="event-card-title">${evt.title}</h3>
@@ -146,14 +147,14 @@ function renderEvents() {
             <span class="info-box-val">${evt.venue}</span>
           </div>
           <div class="event-info-box" style="grid-column: 1 / -1;">
-            <span class="info-box-label">Participation</span>
+            <span class="info-box-label">Team Structure</span>
             <span class="info-box-val">${evt.teamSize}</span>
           </div>
         </div>
 
         <div class="event-card-footer">
           <div class="event-card-cta-btn">
-            <span>View Details & Rules</span>
+            <span>View Rule Book Dossier</span>
             ${getIconSvg('arrow-right')}
           </div>
         </div>
@@ -179,7 +180,7 @@ function openEventModal(eventId) {
 
   if (!modal || !bodyEl) return;
 
-  titleEl.textContent = evt.title;
+  titleEl.textContent = evt.title + (evt.subtitle ? ` — ${evt.subtitle}` : '');
   tagEl.innerHTML = `
     <span class="badge badge-glow-gold">${evt.badge}</span>
     <span class="badge badge-outline">${evt.category}</span>
@@ -209,13 +210,13 @@ function openEventModal(eventId) {
 
     <!-- Executive Overview -->
     <div class="modal-section-card">
-      <h4 style="color: ${evt.color};">Executive Summary & Objective</h4>
+      <h4 style="color: ${evt.color};">Objective & Overview</h4>
       <p style="color: #CBD5E1; font-size: 0.94rem; line-height: 1.7;">${evt.overview}</p>
     </div>
 
-    <!-- Competition Pipeline -->
+    <!-- Competition Pipeline / Format -->
     <div class="modal-section-card">
-      <h4 style="color: ${evt.color};">Competition Pipeline & Rounds</h4>
+      <h4 style="color: ${evt.color};">Format of the Challenge & Stages</h4>
       <div>
         ${evt.format.map(f => `
           <div class="stage-step-item">
@@ -226,7 +227,37 @@ function openEventModal(eventId) {
       </div>
     </div>
 
-    <!-- Scoring Rubric -->
+    <!-- Scoring Matrix (if applicable, e.g., FinQuizathon) -->
+    ${evt.scoringMatrix ? `
+      <div class="modal-section-card">
+        <h4 style="color: ${evt.color};">Point & Scoring Breakdown</h4>
+        <div style="display: grid; gap: 0.5rem; margin-top: 0.5rem;">
+          ${evt.scoringMatrix.map(s => `
+            <div style="display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.03); padding: 0.6rem 0.85rem; border-radius: var(--radius-xs); border: 1px solid rgba(255, 255, 255, 0.06); gap: 0.5rem;">
+              <span style="font-size: 0.88rem; color: #E2E8F0;">${s.scenario}</span>
+              <span style="font-weight: 700; color: var(--accent-gold); font-family: var(--font-mono); font-size: 0.88rem; flex-shrink: 0;">${s.points}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- Special Powers (if applicable, e.g., UnoFin) -->
+    ${evt.specialPowers ? `
+      <div class="modal-section-card">
+        <h4 style="color: ${evt.color};">Special Power Cards & Rules</h4>
+        <div style="display: grid; gap: 0.65rem; margin-top: 0.5rem;">
+          ${evt.specialPowers.map(p => `
+            <div style="background: rgba(0, 229, 255, 0.04); border-left: 3px solid var(--accent-cyan); border-radius: var(--radius-xs); padding: 0.75rem 1rem; border-top: 1px solid rgba(255, 255, 255, 0.05); border-right: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+              <div style="font-weight: 800; color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 0.25rem;">${p.power}</div>
+              <div style="font-size: 0.85rem; color: #CBD5E1; line-height: 1.5;">${p.effect}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- Scoring Rubric / Evaluation Criteria -->
     <div class="modal-section-card">
       <h4 style="color: ${evt.color};">Evaluation Criteria & Weightage</h4>
       <div>
@@ -242,9 +273,9 @@ function openEventModal(eventId) {
       </div>
     </div>
 
-    <!-- Compliance & Regulations -->
+    <!-- Compliance & Regulations from Rule Book -->
     <div class="modal-section-card">
-      <h4 style="color: ${evt.color};">Event Rules & Compliance</h4>
+      <h4 style="color: ${evt.color};">Rules & Regulations</h4>
       <ul class="modal-rules-checklist">
         ${evt.rules.map(r => `
           <li>
@@ -261,14 +292,14 @@ function openEventModal(eventId) {
     footerActionEl.innerHTML = `
       <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; width: 100%; justify-content: space-between; align-items: center;">
         <div style="font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono);">
-          Registration closes: 03-09-2026 • Event: 09-09-2026
+          Registration deadline: 03-09-2026 • Reporting: Prior to 1:00 PM
         </div>
         <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
           <a href="${evt.regFormUrl}" target="_blank" class="btn btn-primary">
             Register for ${evt.title} ${getIconSvg('arrow-right')}
           </a>
           <button onclick="closeEventModal(); openRegisterModal('${evt.id}');" class="btn btn-secondary btn-sm">
-            Event Form & Rules
+            Event Registration Form
           </button>
         </div>
       </div>
@@ -378,7 +409,7 @@ function renderCoordinators() {
 }
 
 /* ==========================================================================
-   9. Best-in-Class Scroll Reveal Observer
+   9. Scroll Reveal Observer
    ========================================================================== */
 function initScrollAnimations() {
   const observerOptions = {
@@ -450,7 +481,7 @@ function initNavigation() {
 }
 
 /* ==========================================================================
-   11. Modal Setup Helpers
+   11. Modal Setup Helpers & Registration Hub
    ========================================================================== */
 function initModals() {
   const modal = document.getElementById('event-modal');
@@ -488,22 +519,7 @@ function openRegisterModal(eventParam = '') {
     if (subtitleEl) subtitleEl.textContent = `Direct Google Form for ${evt.title} (${evt.category})`;
 
     bodyContentEl.innerHTML = `
-      <!-- Official WhatsApp Banner at Top -->
-      <div style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.15) 0%, rgba(18, 140, 126, 0.2) 100%); border: 1px solid rgba(37, 211, 102, 0.4); border-radius: var(--radius-sm); padding: 0.85rem 1rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap;">
-        <div>
-          <div style="font-size: 0.88rem; color: #25D366; font-weight: 800;">
-            💬 Official FINFEST '26 WhatsApp Group
-          </div>
-          <div style="font-size: 0.76rem; color: #CBD5E1;">
-            Join for instant announcements & team briefing.
-          </div>
-        </div>
-        <a href="${FINFEST_DATA.meta.whatsappGroupUrl}" target="_blank" class="btn btn-gold btn-sm" style="background: #25D366; color: #000; font-weight: 800;">
-          Join WhatsApp ➔
-        </a>
-      </div>
-
-      <div class="modal-section-card">
+      <div class="modal-section-card" style="margin-top: 0;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.5rem;">
           <h4 style="color: ${evt.color}; margin: 0;">${evt.title}</h4>
           <span class="badge badge-glow-cyan">${evt.timing}</span>
@@ -518,11 +534,11 @@ function openRegisterModal(eventParam = '') {
       </div>
 
       <div class="modal-section-card">
-        <h4 style="color: var(--accent-cyan);">Important Guidelines</h4>
+        <h4 style="color: var(--accent-cyan);">Registration Guidelines</h4>
         <ul class="modal-rules-checklist">
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Fill out this dedicated Google Form for <strong>${evt.title}</strong>.</span>
+            <span>Fill out this dedicated Google Form for <strong>${evt.title}</strong> before <strong>03-09-2026</strong>.</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -530,67 +546,67 @@ function openRegisterModal(eventParam = '') {
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Original College ID cards are mandatory on event day (09-09-2026).</span>
+            <span>Mandatory reporting prior to <strong>1:00 PM</strong> on 09-09-2026 with original College ID cards.</span>
           </li>
         </ul>
       </div>
 
       <div style="text-align: center; padding: 0.5rem 0; display: flex; flex-direction: column; gap: 0.75rem;">
         <a href="${evt.regFormUrl}" target="_blank" class="btn btn-primary btn-lg" style="width: 100%;">
-          Proceed to ${evt.title} Google Form →
+          Open ${evt.title} Google Form →
         </a>
         <button onclick="openRegisterModal('')" class="btn btn-secondary btn-sm" style="width: 100%;">
-          ← View Forms for Other 5 Events
+          ← View Forms for Other 5 Challenges
         </button>
       </div>
     `;
   } else {
     // General 6-Event Hub
     if (badgeEl) badgeEl.textContent = 'Online Registration Hub';
-    if (titleEl) titleEl.textContent = "FINFEST '26 Event Forms";
-    if (subtitleEl) subtitleEl.textContent = 'Each event has a separate Google Form. Select your event below:';
+    if (titleEl) titleEl.textContent = "FINFEST '26 Challenge Forms";
+    if (subtitleEl) subtitleEl.textContent = 'Each challenge has a dedicated Google Form. Select your event below:';
 
     bodyContentEl.innerHTML = `
-      <!-- Official WhatsApp Banner at Top of ALL Forms -->
-      <div style="background: linear-gradient(135deg, rgba(37, 211, 102, 0.18) 0%, rgba(18, 140, 126, 0.28) 100%); border: 1px solid rgba(37, 211, 102, 0.45); border-radius: var(--radius-sm); padding: 1rem 1.25rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;">
-        <div>
-          <div style="font-weight: 800; color: #25D366; font-size: 1rem; display: flex; align-items: center; gap: 0.4rem;">
-            💬 Official FINFEST '26 WhatsApp Community
-          </div>
-          <div style="font-size: 0.8rem; color: #E2E8F0; margin-top: 0.25rem;">
-            Join before registering for live announcements, schedules & query resolution.
-          </div>
-        </div>
-        <a href="${FINFEST_DATA.meta.whatsappGroupUrl}" target="_blank" class="btn btn-gold" style="background: #25D366; color: #000; font-weight: 800; border-color: #25D366; flex-shrink: 0;">
-          Join WhatsApp Group ➔
-        </a>
-      </div>
-
       <!-- 6 Event Forms List -->
       <div style="display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1.25rem;">
         ${FINFEST_DATA.events.map((e, idx) => `
           <div style="background: rgba(4, 10, 24, 0.85); border: 1px solid var(--border-subtle); border-left: 3px solid ${e.color}; border-radius: var(--radius-xs); padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
             <div>
-              <div style="font-weight: 700; color: #FFFFFF; font-size: 0.95rem;">${idx + 1}. ${e.title}</div>
+              <div style="font-weight: 700; color: #FFFFFF; font-size: 0.95rem;">
+                ${idx + 1}. ${e.title} ${e.subtitle ? `<span style="color: var(--accent-gold); font-size: 0.8rem;">(${e.subtitle})</span>` : ''}
+              </div>
               <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">${e.timing} • ${e.teamSize}</div>
             </div>
-            <a href="${e.regFormUrl}" target="_blank" class="btn btn-primary btn-sm" style="flex-shrink: 0;">
-              Open Form →
-            </a>
+            <div style="display: flex; gap: 0.5rem;">
+              <button onclick="openEventModal('${e.id}')" class="btn btn-secondary btn-sm">
+                Dossier
+              </button>
+              <a href="${e.regFormUrl}" target="_blank" class="btn btn-primary btn-sm" style="flex-shrink: 0;">
+                Open Form →
+              </a>
+            </div>
           </div>
         `).join('')}
       </div>
 
       <div class="modal-section-card">
-        <h4 style="color: var(--accent-cyan);">General Guidelines</h4>
+        <h4 style="color: var(--accent-cyan);">General Registration Guidelines</h4>
         <ul class="modal-rules-checklist">
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Fill out the specific form corresponding to each competition you are participating in.</span>
+            <span>Registration closes on <strong>03-09-2026</strong>. No on-the-spot registration.</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Registration is at individual level (Each candidate registers separately).</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
             <span>One candidate can register for a maximum of 3 events.</span>
+          </li>
+          <li>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>All participants must report prior to <strong>1:00 PM</strong> with original College ID cards.</span>
           </li>
         </ul>
       </div>
@@ -610,7 +626,7 @@ function closeRegisterModal() {
 }
 
 /* ==========================================================================
-   12. Full-Page Cinematic Moving Trading Intro Loader
+   12. Full-Page Cinematic Trading Intro Loader
    ========================================================================== */
 function initIntroLoader() {
   const loader = document.getElementById('intro-loader');
@@ -620,10 +636,8 @@ function initIntroLoader() {
 
   if (!loader) return;
 
-  // Prevent background scrolling while loading
   document.body.style.overflow = 'hidden';
 
-  // 1. Full-Screen Dynamic Trading Canvas Animation inside Loader
   let animId = null;
   if (canvas) {
     const ctx = canvas.getContext('2d');
@@ -648,7 +662,7 @@ function initIntroLoader() {
     function renderLoaderScene() {
       ctx.clearRect(0, 0, width, height);
 
-      // Perspective Holographic Grid
+      // Holographic Grid
       ctx.strokeStyle = 'rgba(0, 240, 255, 0.06)';
       ctx.lineWidth = 1;
       const gridSize = 60;
@@ -665,10 +679,10 @@ function initIntroLoader() {
         ctx.stroke();
       }
 
-      // Dynamic Sweeping Stock Market Splines
+      // Sweeping Splines
       frame++;
       
-      // Wave 1: Cyan Bullish Surge
+      // Wave 1: Cyan Surge
       ctx.beginPath();
       ctx.strokeStyle = '#00F0FF';
       ctx.lineWidth = 2.5;
@@ -681,7 +695,7 @@ function initIntroLoader() {
       }
       ctx.stroke();
 
-      // Wave 2: Emerald Momentum Line
+      // Wave 2: Emerald Line
       ctx.beginPath();
       ctx.strokeStyle = '#00E676';
       ctx.lineWidth = 2;
@@ -695,7 +709,7 @@ function initIntroLoader() {
       ctx.stroke();
       ctx.shadowBlur = 0;
 
-      // Floating Network Particles
+      // Particles
       particles.forEach(p => {
         p.x += p.vx;
         p.y += p.vy;
@@ -716,9 +730,9 @@ function initIntroLoader() {
     renderLoaderScene();
   }
 
-  // 2. Real-Time Percentage Counter & Progress Sync (7 Seconds Duration)
+  // Real-Time Percentage Counter & Progress Sync
   let progress = 0;
-  const duration = 7000; // 7 seconds total
+  const duration = 6500; // ~6.5 seconds
   const intervalTime = 30;
   const step = (100 / (duration / intervalTime));
   const tickerMsg = document.querySelector('.ticker-msg');
@@ -726,16 +740,15 @@ function initIntroLoader() {
   const progressInterval = setInterval(() => {
     progress += step;
 
-    // Dynamic Phased Telemetry during the 7 seconds
     if (tickerMsg) {
       if (progress < 25) {
         tickerMsg.textContent = 'CONNECTING TO HIGH-FREQUENCY EXCHANGE...';
       } else if (progress < 50) {
-        tickerMsg.textContent = 'FETCHING LIVE COMMERCE & STRATEGY FEEDS...';
+        tickerMsg.textContent = 'SYNCING 6 CHALLENGE MATRICES & COLOR BOWLS...';
       } else if (progress < 75) {
-        tickerMsg.textContent = 'INITIALIZING 6 CHAMPIONSHIP ARENAS...';
+        tickerMsg.textContent = 'INITIALIZING FORENSIC & STOCK SIMULATION ENGINES...';
       } else if (progress < 95) {
-        tickerMsg.textContent = 'CALIBRATING REAL-TIME SCORING MATRICES...';
+        tickerMsg.textContent = 'CALIBRATING REAL-TIME SCORING & ARBITRATION...';
       } else {
         tickerMsg.textContent = 'SYSTEM READY — WELCOME TO FINFEST 2026';
       }
@@ -747,7 +760,6 @@ function initIntroLoader() {
       if (pctCounter) pctCounter.textContent = '100%';
       if (barFill) barFill.style.width = '100%';
 
-      // Smooth dismiss
       setTimeout(() => {
         loader.classList.add('loaded');
         document.body.style.overflow = '';
@@ -791,4 +803,3 @@ window.openEventModal = openEventModal;
 window.closeEventModal = closeEventModal;
 window.openRegisterModal = openRegisterModal;
 window.closeRegisterModal = closeRegisterModal;
-
