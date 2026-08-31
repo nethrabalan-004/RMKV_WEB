@@ -181,6 +181,8 @@ function renderEvents() {
    5. Clean Professional Event Dossier Modal with Individual Rule Book Download
    ========================================================================== */
 function openEventModal(eventId) {
+  closeRegisterModal();
+
   const evt = FINFEST_DATA.events.find(e => e.id === eventId);
   if (!evt) return;
 
@@ -523,11 +525,17 @@ function initNavigation() {
 function initModals() {
   const modal = document.getElementById('event-modal');
   const closeBtn = document.getElementById('modal-close-btn');
+  const regModal = document.getElementById('register-modal');
 
   if (closeBtn) closeBtn.addEventListener('click', closeEventModal);
   if (modal) {
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeEventModal();
+    });
+  }
+  if (regModal) {
+    regModal.addEventListener('click', (e) => {
+      if (e.target === regModal) closeRegisterModal();
     });
   }
 
@@ -540,6 +548,8 @@ function initModals() {
 }
 
 function openRegisterModal(eventParam = '') {
+  closeEventModal();
+
   const regModal = document.getElementById('register-modal');
   const titleEl = document.getElementById('reg-modal-title');
   const subtitleEl = document.getElementById('reg-modal-subtitle');
@@ -592,6 +602,9 @@ function openRegisterModal(eventParam = '') {
         <a href="${evt.regFormUrl}" target="_blank" class="btn btn-primary btn-lg" style="width: 100%;">
           Open ${evt.title} Google Form →
         </a>
+        <button onclick="closeRegisterModal(); openEventModal('${evt.id}');" class="btn btn-secondary" style="width: 100%;">
+          View ${evt.title} Event Details & Rules
+        </button>
         ${evt.ruleBookUrl ? `
           <a href="${evt.ruleBookUrl}" 
              download="${evt.ruleBookFileName || evt.title + '_RuleBook.pdf'}" 
@@ -606,13 +619,13 @@ function openRegisterModal(eventParam = '') {
       </div>
     `;
   } else {
-    // General 6-Event Hub
+    // General 5-Event Hub
     if (badgeEl) badgeEl.textContent = 'Online Registration Hub';
     if (titleEl) titleEl.textContent = "FINFEST '26 Challenge Forms";
     if (subtitleEl) subtitleEl.textContent = 'Each challenge has a dedicated Google Form and separate Rule Book. Select your event below:';
 
     bodyContentEl.innerHTML = `
-      <!-- 6 Event Forms List -->
+      <!-- 5 Event Forms List -->
       <div style="display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1.25rem;">
         ${FINFEST_DATA.events.map((e, idx) => `
           <div style="background: rgba(4, 10, 24, 0.85); border: 1px solid var(--border-subtle); border-left: 3px solid ${e.color}; border-radius: var(--radius-xs); padding: 0.85rem 1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
@@ -631,8 +644,8 @@ function openRegisterModal(eventParam = '') {
                   ${getIconSvg('download')} PDF
                 </a>
               ` : ''}
-              <button onclick="openEventModal('${e.id}')" class="btn btn-secondary btn-sm">
-                Dossier
+              <button onclick="closeRegisterModal(); openEventModal('${e.id}');" class="btn btn-secondary btn-sm" title="Open ${e.title} Dossier">
+                Event Details
               </button>
               <a href="${e.regFormUrl}" target="_blank" class="btn btn-primary btn-sm" style="flex-shrink: 0;">
                 Open Form →
