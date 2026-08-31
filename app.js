@@ -1,6 +1,6 @@
 /**
  * FINFEST '26 — Interactive Application Controller (Official Rule Book Edition)
- * Handles live countdown, event modal dossiers, dynamic filtering, scroll animations, and registration forms.
+ * Handles live countdown, event modal dossiers, individual rule book downloads, dynamic filtering, and registration forms.
  */
 
 // Disable automatic browser scroll restoration so page ALWAYS loads at the very top
@@ -56,7 +56,7 @@ function initCountdown() {
       minutesEl.textContent = '00';
       secondsEl.textContent = '00';
       const noteEl = document.querySelector('.countdown-note');
-      if (noteEl) noteEl.textContent = '⚡ FINFEST \'26 is Live! The 6 Challenges are underway.';
+      if (noteEl) noteEl.textContent = '⚡ FINFEST \'26 is Live! The 5 Challenges are underway.';
       return;
     }
 
@@ -84,6 +84,7 @@ function getIconSvg(iconName) {
     'arrow-right': `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>`,
     'clock': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>`,
     'award': `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>`,
+    'download': `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>`,
     'users': `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>`
   };
 
@@ -110,7 +111,7 @@ function renderGeneralRules() {
 }
 
 /* ==========================================================================
-   4. Render The 6 Challenges Grid
+   4. Render The 6 Challenges Grid with Direct Rule Book Downloads
    ========================================================================== */
 function renderEvents() {
   const gridContainer = document.getElementById('events-grid-container');
@@ -153,9 +154,20 @@ function renderEvents() {
         </div>
 
         <div class="event-card-footer">
-          <div class="event-card-cta-btn">
-            <span>View Rule Book Dossier</span>
-            ${getIconSvg('arrow-right')}
+          <div class="event-card-actions-row">
+            <div class="event-card-cta-btn">
+              <span>View Dossier</span>
+              ${getIconSvg('arrow-right')}
+            </div>
+            ${evt.ruleBookUrl ? `
+              <a href="${evt.ruleBookUrl}" 
+                 download="${evt.ruleBookFileName || evt.title + '_RuleBook.pdf'}" 
+                 class="event-card-download-btn" 
+                 title="Download ${evt.title} Rule Book"
+                 onclick="event.stopPropagation();">
+                ${getIconSvg('download')} PDF
+              </a>
+            ` : ''}
           </div>
         </div>
       </div>
@@ -166,7 +178,7 @@ function renderEvents() {
 }
 
 /* ==========================================================================
-   5. Clean Professional Event Dossier Modal
+   5. Clean Professional Event Dossier Modal with Individual Rule Book Download
    ========================================================================== */
 function openEventModal(eventId) {
   const evt = FINFEST_DATA.events.find(e => e.id === eventId);
@@ -184,6 +196,14 @@ function openEventModal(eventId) {
   tagEl.innerHTML = `
     <span class="badge badge-glow-gold">${evt.badge}</span>
     <span class="badge badge-outline">${evt.category}</span>
+    ${evt.ruleBookUrl ? `
+      <a href="${evt.ruleBookUrl}" 
+         download="${evt.ruleBookFileName || evt.title + '_RuleBook.pdf'}" 
+         class="badge badge-glow-cyan" 
+         style="text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem;">
+        ${getIconSvg('download')} Download Rule Book PDF
+      </a>
+    ` : ''}
   `;
 
   // Build Executive Modal Dossier
@@ -210,7 +230,17 @@ function openEventModal(eventId) {
 
     <!-- Executive Overview -->
     <div class="modal-section-card">
-      <h4 style="color: ${evt.color};">Objective & Overview</h4>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+        <h4 style="color: ${evt.color}; margin: 0;">Objective & Overview</h4>
+        ${evt.ruleBookUrl ? `
+          <a href="${evt.ruleBookUrl}" 
+             download="${evt.ruleBookFileName || evt.title + '_RuleBook.pdf'}" 
+             class="btn btn-secondary btn-sm"
+             style="font-size: 0.76rem; padding: 0.35rem 0.75rem;">
+            ${getIconSvg('download')} Download Official PDF
+          </a>
+        ` : ''}
+      </div>
       <p style="color: #CBD5E1; font-size: 0.94rem; line-height: 1.7;">${evt.overview}</p>
     </div>
 
@@ -287,14 +317,21 @@ function openEventModal(eventId) {
     </div>
   `;
 
-  // Action Button
+  // Action Buttons
   if (footerActionEl) {
     footerActionEl.innerHTML = `
       <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; width: 100%; justify-content: space-between; align-items: center;">
         <div style="font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono);">
           Registration deadline: 03-09-2026 • Reporting: Prior to 1:00 PM
         </div>
-        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+          ${evt.ruleBookUrl ? `
+            <a href="${evt.ruleBookUrl}" 
+               download="${evt.ruleBookFileName || evt.title + '_RuleBook.pdf'}" 
+               class="btn btn-secondary">
+              ${getIconSvg('download')} Download Rule Book
+            </a>
+          ` : ''}
           <a href="${evt.regFormUrl}" target="_blank" class="btn btn-primary">
             Register for ${evt.title} ${getIconSvg('arrow-right')}
           </a>
@@ -555,8 +592,16 @@ function openRegisterModal(eventParam = '') {
         <a href="${evt.regFormUrl}" target="_blank" class="btn btn-primary btn-lg" style="width: 100%;">
           Open ${evt.title} Google Form →
         </a>
+        ${evt.ruleBookUrl ? `
+          <a href="${evt.ruleBookUrl}" 
+             download="${evt.ruleBookFileName || evt.title + '_RuleBook.pdf'}" 
+             class="btn btn-secondary" 
+             style="width: 100%;">
+            ${getIconSvg('download')} Download ${evt.title} Rule Book (PDF)
+          </a>
+        ` : ''}
         <button onclick="openRegisterModal('')" class="btn btn-secondary btn-sm" style="width: 100%;">
-          ← View Forms for Other 5 Challenges
+          ← View Forms for Other 4 Challenges
         </button>
       </div>
     `;
@@ -564,7 +609,7 @@ function openRegisterModal(eventParam = '') {
     // General 6-Event Hub
     if (badgeEl) badgeEl.textContent = 'Online Registration Hub';
     if (titleEl) titleEl.textContent = "FINFEST '26 Challenge Forms";
-    if (subtitleEl) subtitleEl.textContent = 'Each challenge has a dedicated Google Form. Select your event below:';
+    if (subtitleEl) subtitleEl.textContent = 'Each challenge has a dedicated Google Form and separate Rule Book. Select your event below:';
 
     bodyContentEl.innerHTML = `
       <!-- 6 Event Forms List -->
@@ -577,7 +622,15 @@ function openRegisterModal(eventParam = '') {
               </div>
               <div style="font-size: 0.76rem; color: var(--text-muted); font-family: var(--font-mono);">${e.timing} • ${e.teamSize}</div>
             </div>
-            <div style="display: flex; gap: 0.5rem;">
+            <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+              ${e.ruleBookUrl ? `
+                <a href="${e.ruleBookUrl}" 
+                   download="${e.ruleBookFileName || e.title + '_RuleBook.pdf'}" 
+                   class="btn btn-secondary btn-sm"
+                   title="Download ${e.title} Rule Book PDF">
+                  ${getIconSvg('download')} PDF
+                </a>
+              ` : ''}
               <button onclick="openEventModal('${e.id}')" class="btn btn-secondary btn-sm">
                 Dossier
               </button>
@@ -744,7 +797,7 @@ function initIntroLoader() {
       if (progress < 25) {
         tickerMsg.textContent = 'CONNECTING TO HIGH-FREQUENCY EXCHANGE...';
       } else if (progress < 50) {
-        tickerMsg.textContent = 'SYNCING 6 CHALLENGE MATRICES & COLOR BOWLS...';
+        tickerMsg.textContent = 'SYNCING 6 CHALLENGE MATRICES & RULE BOOKS...';
       } else if (progress < 75) {
         tickerMsg.textContent = 'INITIALIZING FORENSIC & STOCK SIMULATION ENGINES...';
       } else if (progress < 95) {

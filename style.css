@@ -1432,22 +1432,30 @@ body {
 
 .event-card-footer {
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   width: 100%;
   margin-top: 0.4rem;
 }
 
-.event-card-cta-btn {
+.event-card-actions-row {
+  display: flex;
+  gap: 0.5rem;
   width: 100%;
+}
+
+.event-card-cta-btn {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 1.15rem;
+  padding: 0.7rem 1rem;
   background: rgba(0, 240, 255, 0.07);
   border: 1px solid rgba(0, 240, 255, 0.28);
   border-radius: var(--radius-pill);
   color: var(--card-accent, var(--accent-cyan));
   font-family: var(--font-display);
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 700;
   cursor: pointer;
   transition: all var(--transition-smooth);
@@ -1458,7 +1466,33 @@ body {
   border-color: var(--accent-cyan);
   box-shadow: 0 0 15px var(--accent-cyan-glow);
   color: #FFFFFF;
-  padding-right: 1.4rem;
+}
+
+.event-card-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.7rem 0.95rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-pill);
+  color: #E2E8F0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-smooth);
+  flex-shrink: 0;
+}
+
+.event-card-download-btn:hover {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: var(--accent-gold);
+  color: #FFD700;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.35);
+  transform: translateY(-1px);
 }
 
 /* ==========================================================================

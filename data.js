@@ -1,5 +1,5 @@
 // FINFEST '26 Comprehensive Event Data Source
-// Synchronized with Official Rule Book & Updated Form Registrations
+// Synchronized with Official Rule Book & Updated Form Registrations (5 Official Events)
 
 const FINFEST_DATA = {
   college: {
@@ -17,7 +17,7 @@ const FINFEST_DATA = {
     eventName: "FINFEST '26",
     tagline: "An Inter - Collegiate Academic Meet",
     subTagline: "THE ULTIMATE FINANCE CHALLENGE",
-    theme: "6 Championship Events",
+    theme: "5 Championship Events",
     date: "09-09-2026", // 09 September 2026
     dateDisplay: "09 SEP 2026",
     eventTime: "2:00 PM",
@@ -27,9 +27,8 @@ const FINFEST_DATA = {
     reportTime: "Prior to 1:00 PM",
     venueDisplay: "College Campus, Mylapore, Chennai - 04",
     officialEmail: "finfest.26.rkmvc@gmail.com",
-    totalEvents: 6,
-    registrationUrl: "#register",
-    ruleBookUrl: "data/Finfest'26 Rule Book.pdf"
+    totalEvents: 5,
+    registrationUrl: "#register"
   },
 
   dignitaries: [
@@ -193,13 +192,13 @@ const FINFEST_DATA = {
     }
   ],
 
-  // 6 Official Challenges with exact Google Forms from User
+  // Exactly 5 Official Challenges with individual Rule Book download PDFs and exact Google Forms
   events: [
     {
       id: "forensic-accounting",
       title: "Forensic Treasure Hunt",
       subtitle: "The Treasure Hunt",
-      tagline: "Uncover Financial Discrepancies, Crack Cryptic Clues & Build the Case",
+      tagline: "Uncover Financial Errors, Solve Investigation Clues & Build the Final Case",
       category: "Investigation",
       badge: "Campus-Wide Hunt",
       icon: "search",
@@ -211,7 +210,9 @@ const FINFEST_DATA = {
       teamSize: "2 - 3 Members per Team",
       teamsPerCollege: "Max 2 Teams per Dept (8 per College)",
       regFormUrl: "https://forms.gle/7gGtVhC7zxNmPN8N9",
-      overview: "The event consists of five stages where participants identify financial errors, solve challenges, and use the clues obtained to proceed to the next stage. Step into the shoes of forensic auditors and fraud intelligence investigators to reconstruct financial paper trails across campus.",
+      ruleBookUrl: "rulebooks/Finfest'26 Rule Book FA.pdf",
+      ruleBookFileName: "Finfest26_Forensic_Treasure_Hunt_RuleBook.pdf",
+      overview: "The event consists of five stages where participants identify financial errors, solve challenges, and use the clues obtained to proceed to the next stage.",
       format: [
         {
           phase: "Stage 1 – Forensic Screening",
@@ -223,7 +224,7 @@ const FINFEST_DATA = {
         },
         {
           phase: "Stage 3 – Investigation Hunt",
-          desc: "Teams will follow a series of forensic clues placed at designated campus locations. Each correctly solved clue will reveal the next step of the investigation."
+          desc: "Teams will follow a series of forensic clues placed at designated locations. Each correctly solved clue will reveal the next step of the investigation."
         },
         {
           phase: "Stage 4 – Final Case",
@@ -231,10 +232,10 @@ const FINFEST_DATA = {
         }
       ],
       criteria: [
-        { label: "Accuracy of Forensic Audit", weight: "35%", desc: "Precision in identifying financial errors, forged documents, and irregularities." },
-        { label: "Investigation Speed", weight: "25%", desc: "Time taken to solve checkpoint riddles and navigate campus locations." },
-        { label: "Final Case Report Dossier", weight: "25%", desc: "Clarity, documentation, and logical structure of the submitted final investigation report." },
-        { label: "Deductive Reasoning & Teamwork", weight: "15%", desc: "Collaborative problem-solving and systematic deduction." }
+        { label: "Forensic Accuracy", weight: "35%", desc: "Precision in solving forensic accounting questions and analyzing evidence." },
+        { label: "Investigation Speed", weight: "25%", desc: "Speed in deciphering clues at designated campus locations." },
+        { label: "Final Report Compilation", weight: "25%", desc: "Accuracy and completeness of the compiled clue data submitted to the judges." },
+        { label: "Teamwork & Deduction", weight: "15%", desc: "Collaboration and systematic reasoning under pressure." }
       ],
       rules: [
         "1. No on-the-spot registration.",
@@ -262,29 +263,31 @@ const FINFEST_DATA = {
       teamSize: "2 Members per Team",
       teamsPerCollege: "Max 2 Teams per Dept (8 per College)",
       regFormUrl: "https://forms.gle/91fjxE2CABFfWYoQA",
-      overview: "Finance Quiz with a Twist is an engaging finance-based competition that combines financial knowledge, speed, physical challenges, visual recognition, and quick decision-making. Participants must complete physical challenges and answer finance and business-related questions to score points and advance through the competition.",
+      ruleBookUrl: "rulebooks/Finfest'26 Rule Book Quiz.pdf",
+      ruleBookFileName: "Finfest26_FinQuizathon_RuleBook.pdf",
+      overview: "Finance Quiz with a Twist is an engaging finance-based competition that combines financial knowledge, speed, physical challenges, visual recognition and quick decision-making. Participants must complete physical challenges and answer finance and business-related questions to score points and advance through the competition.",
       format: [
         {
-          phase: "Round 1 – Preliminary Round (Block Arrangement Race)",
-          desc: "6 teams will compete at each table. A colour/pattern block arrangement will be displayed on the digital board. Teams must race to the designated table and arrange the blocks according to the displayed pattern. Every team that successfully completes the challenge receives 1 point. The team that completes first and presses the buzzer gets the first opportunity to answer. If the 1st team answers incorrectly, the opportunity passes to the 2nd team that finished the challenge. If the 2nd also fails, the question is closed. Top 2 teams from each table qualify for the Final Round."
+          phase: "Round 1 – Preliminary Round",
+          desc: "6 teams will compete at each table. A colour/pattern block arrangement will be displayed on the digital board. Teams must race to the designated table and arrange the blocks according to the displayed pattern. Every team that successfully completes the challenge receives 1 point. The team that completes the challenge first and presses the buzzer gets the first opportunity to answer. If the 1st team answers incorrectly, the opportunity passes to the 2nd team that successfully completed the challenge. If the 2nd team also answers incorrectly, the question is closed and the remaining teams do not get an opportunity to answer. Top 2 teams from each table qualify for the next round."
         },
         {
-          phase: "Final Round – Logo Identification (Paper Cup Pyramid)",
-          desc: "5 teams will qualify for the Final Round. The physical challenge will be a Paper Cup Pyramid. A corporate logo and challenge pattern will be displayed on the digital board. Teams must complete the Paper Cup Pyramid according to the pattern. Buzzer follows a First-Come, First-Serve system. Only the first 3 teams to successfully complete the challenge receive the challenge point. 1st Team: 1 pt + 1st answer chance. 2nd Team: 1 pt + 2nd answer chance. 3rd Team: 1 pt (no answer chance)."
+          phase: "Final Round – Logo Identification",
+          desc: "5 teams will qualify for the Final Round. The physical challenge will be a Paper Cup Pyramid. A logo and challenge pattern will be displayed on the digital board. Teams must complete the Paper Cup Pyramid according to the displayed pattern. The buzzer follows a First-Come, First-Serve system. Only the first 3 teams to successfully complete the physical challenge will receive the challenge point. 1st Team → 1 point + First opportunity to answer. 2nd Team → 1 point + Second opportunity to answer. 3rd Team → 1 point but No answering opportunity."
         }
       ],
       scoringMatrix: [
-        { scenario: "Challenge completed successfully", points: "1 Point" },
+        { scenario: "Challenge completed", points: "1 Point" },
         { scenario: "Challenge + Correct Answer", points: "3 Points Total" },
         { scenario: "Challenge + Wrong Answer", points: "1 Point" },
-        { scenario: "Challenge not completed / Premature buzzer", points: "0 Points (No answering opportunity)" },
-        { scenario: "4th & 5th Teams in Final Round", points: "0 Points" }
+        { scenario: "Challenge not completed / Premature buzzer", points: "0 Points + No answering opportunity" },
+        { scenario: "4th & 5th Teams (Final Round)", points: "0 Points" }
       ],
       criteria: [
-        { label: "Financial Domain Knowledge", weight: "40%", desc: "Accuracy across corporate finance, commerce, economics, and corporate logos." },
-        { label: "Physical Agility & Pattern Speed", weight: "30%", desc: "Speed in assembling color blocks and paper cup pyramids correctly." },
-        { label: "Buzzer Reaction & Strategy", weight: "20%", desc: "Quick decision-making and avoiding premature buzzer penalties." },
-        { label: "Team Coordination", weight: "10%", desc: "Flawless teamwork during physical races and question handling." }
+        { label: "Financial Domain Knowledge", weight: "40%", desc: "Accuracy across finance, commerce, business, and corporate logos." },
+        { label: "Physical Speed & Pattern Agility", weight: "30%", desc: "Speed and correctness in assembling block patterns and cup pyramids." },
+        { label: "Buzzer Reaction & Decision-Making", weight: "20%", desc: "Reaction speed and strategic buzzer discipline." },
+        { label: "Teamwork & Sportsmanship", weight: "10%", desc: "Discipline, order adherence, and collaborative focus." }
       ],
       rules: [
         "1. Teams must follow all instructions given by the event coordinators.",
@@ -294,16 +297,16 @@ const FINFEST_DATA = {
         "5. Teams must maintain discipline, teamwork and sportsmanship throughout the competition.",
         "6. Participants must follow the designated order and instructions during every challenge.",
         "7. If teams are tied for a qualifying position, a tie-breaker challenge/question will be conducted.",
-        "8. The number of teams per table and qualification structure may be adjusted according to the total number of participants.",
+        "8. The number of teams, tables and qualification structure may be adjusted according to the total number of participants.",
         "9. Any cheating, misconduct or deliberate violation may result in disqualification.",
-        "10. The moderator/judge’s decision will be final and binding."
+        "10. The moderator/judge's decision will be final and binding."
       ]
     },
     {
       id: "business-proposal",
       title: "Business Proposal",
       subtitle: "Build. Pitch. Win.",
-      tagline: "Venture Pitching, Market Feasibility, Revenue Modeling & Investor Defense",
+      tagline: "Hands-on Exposure to Business Planning, Entrepreneurship & Professional Pitching",
       category: "Venture Strategy",
       badge: "Shark Tank Arena",
       icon: "briefcase",
@@ -311,38 +314,40 @@ const FINFEST_DATA = {
       accentGlow: "rgba(255, 215, 0, 0.4)",
       venue: "Sarada Hall",
       timing: "2:45 PM – 5:15 PM",
-      duration: "10 Minutes per Team (8m Pitch + 2m Q&A)",
+      duration: "10 Minutes per Team (8m Presentation + 2m Q&A)",
       teamSize: "Maximum of 2 Members per Team",
       teamsPerCollege: "Max 2 Teams per Dept (8 per College)",
       regFormUrl: "https://forms.gle/eLhDmkv7AEYRwPHAA",
+      ruleBookUrl: "rulebooks/Finfest'26 Rule Book BP.pdf",
+      ruleBookFileName: "Finfest26_Business_Proposal_RuleBook.pdf",
       overview: "The event aims to provide students with hands-on exposure to business planning, entrepreneurship, and professional pitching. It enables participants to transform their ideas into practical business proposals while understanding market trends, target consumers, competition, revenue models, and financial feasibility. The event also provides an opportunity to interact with professionals and bridge the gap between classroom learning and industry practice.",
       format: [
         {
-          phase: "Structure & Pitch Deck Submission",
-          desc: "Participants must submit their business proposal in PPT and PDF formats in advance into the specified drive communicated after registration."
+          phase: "Proposal Submission (PPT & PDF)",
+          desc: "Participants must submit their business proposal in PPT and PDF formats within the specified submission deadline. After completing the registration you will be requested to submit your PPT in the specified drive, which will be communicated later."
         },
         {
-          phase: "The 8-Minute Executive Pitch",
-          desc: "Each team is allotted 8 minutes for the presentation. A reminder bell will be given at the 7-minute mark. Participants will be notified at the 8-minute mark to conclude the presentation."
+          phase: "8-Minute Presentation",
+          desc: "Each team will be allotted 8 minutes for the presentation. A reminder will be given at the 7-minute mark. Participants will be notified at the 8-minute mark to conclude the presentation and proceed to the Q&A session."
         },
         {
-          phase: "The 2-Minute Investor Q&A",
-          desc: "2 minutes will be allotted for the Q&A session. Face questioning by the jury panel of Chartered Accountants and corporate entrepreneurs on financial feasibility, unit economics, and market moats."
+          phase: "2-Minute Q&A Session",
+          desc: "2 minutes will be allotted for the Q&A session. Participants must be prepared to answer questions raised by the judges during the Q&A session."
         }
       ],
       criteria: [
-        { label: "Originality & Market Need", weight: "25%", desc: "Novelty of the business proposition and relevance to the proposed market." },
-        { label: "Financial Feasibility & Revenue Model", weight: "25%", desc: "Unit economics, cash flow projections, margins, and monetization clarity." },
-        { label: "Market Trends & Competitive Moats", weight: "20%", desc: "Target consumer definition, TAM/SAM/SOM, and competitive differentiation." },
-        { label: "Visual Quality & Deck Design", weight: "15%", desc: "Use of supporting visuals, charts, graphs, and financial projections." },
-        { label: "Q&A Handling & Poise", weight: "15%", desc: "Precision, domain mastery, and defense during judge interrogation." }
+        { label: "Originality & Market Relevance", weight: "25%", desc: "Novelty of the business idea and relevance to the proposed market." },
+        { label: "Financial Feasibility & Revenue Model", weight: "25%", desc: "Unit economics, cash flow projections, margins, and financial viability." },
+        { label: "Market Trends & Target Consumers", weight: "20%", desc: "Consumer insights, competitive landscape, and market fit." },
+        { label: "Visuals, Charts & Projections", weight: "15%", desc: "Effective use of supporting visuals, charts, graphs, and financial models." },
+        { label: "Q&A Defense & Composure", weight: "15%", desc: "Confidence, domain mastery, and clarity in answering judges' questions." }
       ],
       rules: [
         "1. Each team must consist of Maximum of 2 members.",
         "2. The business idea presented must be original and relevant to the proposed market.",
-        "3. Participants must submit their PPT and PDF within the specified submission deadline in the designated drive.",
+        "3. Participants must submit their PPT and PDF within the specified submission deadline.",
         "4. The presentation must be prepared and presented by the registered participants only.",
-        "5. Participants must strictly adhere to the 10-minute time limit (8 min pitch + 2 min Q&A).",
+        "5. Participants must strictly adhere to the 10-minute time limit.",
         "6. Exceeding the allotted presentation time may result in deduction of marks.",
         "7. Participants must be prepared to answer questions raised by the judges during the Q&A session.",
         "8. Use of offensive, inappropriate, or plagiarised content is strictly prohibited.",
@@ -355,7 +360,7 @@ const FINFEST_DATA = {
       id: "stock-wars",
       title: "Stock Wars",
       subtitle: "Trade. Risk. Conquer.",
-      tagline: "Live-Action Virtual Capital Allocation, Asset Optimization & Market Strategy",
+      tagline: "Investment Strategy Competition Simulating Real-World Stock Market Dynamics",
       category: "Portfolio Simulation",
       badge: "Flagship Arena",
       icon: "trending-up",
@@ -363,34 +368,36 @@ const FINFEST_DATA = {
       accentGlow: "rgba(0, 240, 255, 0.4)",
       venue: "RKN Hall",
       timing: "2:45 PM – 5:15 PM",
-      duration: "Multi-Round Live Trading Simulation",
+      duration: "Time-Bound Portfolio Management Simulation",
       teamSize: "2 Participants per Team",
       teamsPerCollege: "Only 2 Teams per College",
       regFormUrl: "https://forms.gle/fuy3anYpyzaYKaaM7",
+      ruleBookUrl: "rulebooks/Finfest'26 Rule Book SW.pdf",
+      ruleBookFileName: "Finfest26_Stock_Wars_RuleBook.pdf",
       overview: "Stock Wars is an investment strategy competition that simulates real-world stock market dynamics. Participants take on the role of portfolio managers, using virtual funds to analyse market scenarios, allocate investments, and optimise their portfolios. The event tests financial knowledge, risk assessment, strategic thinking, and decision-making under time constraints.",
       format: [
         {
-          phase: "Virtual Capital Inflow & Watchlist Setup",
-          desc: "Each team receives a fixed amount of virtual funds at the beginning of the event. A curated list of stocks and market scenarios will be provided."
+          phase: "Virtual Funds & Market Scenarios",
+          desc: "Each team will receive a fixed amount of virtual funds at the beginning of the event. A curated list of stocks and market scenarios will be provided during the event."
         },
         {
-          phase: "Dynamic Live Trading Rounds",
-          desc: "Teams must analyse available investment options, deploy capital, and build portfolios within the allotted time under changing macroeconomic conditions."
+          phase: "Portfolio Construction",
+          desc: "Teams must analyse the available options and build their portfolios within the allotted time."
         },
         {
-          phase: "Volatility Shocks & Market Events",
-          desc: "Participants may be required to respond dynamically to changing market conditions, earnings surprises, and sector shifts during the event."
+          phase: "Dynamic Market Conditions",
+          desc: "Participants may be required to respond to changing market conditions or scenarios during the event."
         },
         {
           phase: "Final Portfolio Evaluation",
-          desc: "The final portfolio will be evaluated based on its profitability, diversification, and risk management parameters."
+          desc: "The final portfolio will be evaluated based on its profitability, diversification, and risk management."
         }
       ],
       criteria: [
         { label: "Portfolio Returns", weight: "35%", desc: "Overall profitability generated from investments." },
-        { label: "Strategic Allocation", weight: "25%", desc: "Effective distribution of funds across selected stocks and asset classes." },
-        { label: "Risk Management", weight: "25%", desc: "Ability to balance high- and low-risk investments and hedge against volatility." },
-        { label: "Decision-Making", weight: "15%", desc: "Ability to respond effectively and rationally to market scenarios under time constraints." }
+        { label: "Strategic Allocation", weight: "25%", desc: "Effective distribution of funds across selected stocks." },
+        { label: "Risk Management", weight: "25%", desc: "Ability to balance high- and low-risk investments." },
+        { label: "Decision-Making", weight: "15%", desc: "Ability to respond effectively to market scenarios." }
       ],
       rules: [
         "1. Only 2 teams per college, with 2 participants per team, will be permitted.",
@@ -403,60 +410,14 @@ const FINFEST_DATA = {
         "8. Any attempt to manipulate, obtain unauthorised information, or interfere with another team's portfolio will result in disqualification.",
         "9. The team achieving the highest final portfolio value, while satisfying the evaluation criteria, will be declared the winner.",
         "10. The decision of the judges/event coordinators will be final and binding.",
-        "11. The organisers reserve the right to modify the event format, timings, or rules based on operational requirements."
-      ]
-    },
-    {
-      id: "tughlaq-durbar",
-      title: "Tughlaq Durbar",
-      subtitle: "Strategy Meets Power",
-      tagline: "Corporate-Political Crisis, Policy Warfare, Fiscal Diplomacy & Cabinet Defense",
-      category: "Strategic Diplomacy",
-      badge: "Imperial Assembly",
-      icon: "crown",
-      color: "#FF5722",
-      accentGlow: "rgba(255, 87, 34, 0.4)",
-      venue: "Hall S-19",
-      timing: "2:45 PM – 5:15 PM",
-      duration: "Imperial Cabinet Simulation",
-      teamSize: "2 Participants per Team",
-      teamsPerCollege: "Max 2 Teams per Dept (8 per College)",
-      regFormUrl: "https://forms.gle/91fjxE2CABFfWYoQA",
-      overview: "Strategy Meets Power. Step into the royal court of economic high command where fiscal policy meets high-stakes power politics. Participants assume the roles of strategic ministers, treasury heads, and crisis diplomats navigating imperial decrees, state treasury deficits, trade wars, public revolts, and geopolitical conflicts. Defend radical policy shifts before a scrutinizing assembly of lords and judges.",
-      format: [
-        {
-          phase: "Phase 1 – The Imperial Decree & Crisis Dossier",
-          desc: "Teams receive a high-stakes scenario involving acute treasury insolvency, currency revaluation, hyperinflation, or sudden geopolitical trade sanctions."
-        },
-        {
-          phase: "Phase 2 – Durbar Policy Drafting & Cabinet Alliances",
-          desc: "Formulate an emergency economic blueprint, manage factional interests, negotiate strategic coalitions with rival ministers, and draft executive decrees."
-        },
-        {
-          phase: "Phase 3 – Floor Defense & Sovereign Arbitration",
-          desc: "Defend your radical economic reforms under aggressive questioning from the Grand Vizier and judicial panel. Navigate surprise court disruptions."
-        }
-      ],
-      criteria: [
-        { label: "Strategic Foresight & Policy Depth", weight: "35%", desc: "Viability, historical/economic logic, and long-term consequences of proposed decrees." },
-        { label: "Diplomatic Negotiation & Coalition Building", weight: "25%", desc: "Tactical acumen in brokering power deals and managing conflicting stakeholder factions." },
-        { label: "Crisis Management & Composure", weight: "25%", desc: "Handling unexpected economic shocks and hostile cross-examination in the court." },
-        { label: "Rhetoric & Oratory Defense", weight: "15%", desc: "Command, conviction, poise, and persuasiveness in presenting before the throne." }
-      ],
-      rules: [
-        "1. Each team must consist of 2 participants.",
-        "2. All teams must report prior to 1:00 PM; no on-the-spot registrations permitted.",
-        "3. Preparation time and assembly speaking order will be strictly regulated by court marshals.",
-        "4. Any unruly conduct, personal insults, or breach of assembly decorum will lead to immediate expulsion.",
-        "5. Electronic devices and outside communication are strictly barred during the Durbar session.",
-        "6. The decision of the Durbar Jury and Grand Vizier is final and unquestionable."
+        "11. The organisers reserve the right to modify the event format, timings, or rules based on the number of participating teams or other operational requirements."
       ]
     },
     {
       id: "unofin",
       title: "UnoFin",
       subtitle: "The Uno Challenge",
-      tagline: "UNO-Inspired Finance Strategy Game with Color Bowls & Special Powers",
+      tagline: "Team-Based Finance Strategy Game Inspired by UNO with Color Bowls & Special Powers",
       category: "Card Strategy",
       badge: "Card Battle",
       icon: "zap",
@@ -465,18 +426,20 @@ const FINFEST_DATA = {
       venue: "Commerce Lab",
       timing: "2:45 PM – 5:15 PM",
       duration: "Tournament Card Rounds",
-      teamSize: "2 Participants per Team (Both Actively Playing)",
+      teamSize: "2 Participants per Team (Both Actively Participating)",
       teamsPerCollege: "Max 2 Teams per Dept (8 per College)",
       regFormUrl: "https://forms.gle/cehoSq8ZcCCmLvoH8",
+      ruleBookUrl: "rulebooks/Finfest'26 Rule Book UF.pdf",
+      ruleBookFileName: "Finfest26_UnoFin_RuleBook.pdf",
       overview: "UNOFIN is a team-based finance strategy game inspired by UNO, designed to test participants’ financial knowledge, strategic thinking, teamwork, speed and decision-making. Teams must strategically play their cards and answer finance-related MCQs to eliminate all their cards and progress through the tournament.",
       format: [
         {
           phase: "Gameplay & Domain Color Bowls",
-          desc: "Teams play UNO cards by matching the colour or number of the Open Card. After playing a normal card, the team answers an MCQ within 20 seconds from the corresponding colour bowl: 🟡 Yellow – Commerce | 🔴 Red – Accounting & Finance | 🟢 Green – Business Management | 🔵 Blue – Marketing."
+          desc: "Teams play UNO cards by matching the colour or number of the Open Card. After playing a normal card, the team answers an MCQ from the corresponding colour bowl: 🟡 Yellow – Commerce | 🔴 Red – Accounting & Finance | 🟢 Green – Business Management | 🔵 Blue – Marketing."
         },
         {
-          phase: "Turn Rules & Alternating Answers",
-          desc: "Correct answer → Card is successfully played with no penalty. Wrong/No answer → Draw 2 cards, subject to special-card rules. Questions must be answered alternately by both team members. When one card remains, the team must declare “UNO!”"
+          phase: "Turn Rules & Timers",
+          desc: "Each question must be answered within 20 seconds. Correct answer → Card is successfully played with no penalty. Wrong/No answer → Draw 2 cards, subject to special-card rules. Questions must be answered alternately by both team members. When one card remains, the team must declare “UNO!”"
         }
       ],
       specialPowers: [
@@ -544,7 +507,7 @@ const FINFEST_DATA = {
     },
     {
       time: "02:45 PM – 05:15 PM",
-      title: "The 6 Championship Challenges (Simultaneous Arenas)",
+      title: "The 5 Championship Challenges (Simultaneous Arenas)",
       venue: "Designated Department Halls & Campus Grounds",
       type: "Event",
       details: [
@@ -552,17 +515,16 @@ const FINFEST_DATA = {
         "FinQuizathon: Think. Analyze. Conquer. (Hall G-55)",
         "Business Proposal: Build. Pitch. Win. (Sarada Hall)",
         "Stock Wars: Trade. Risk. Conquer. (RKN Hall)",
-        "Tughlaq Durbar: Strategy Meets Power (Hall S-19)",
         "UnoFin: The Uno Challenge (Commerce Lab)"
       ],
-      desc: "High-intensity academic battles across 6 parallel competitive arenas testing financial wisdom, strategy, agile deduction, and tactical prowess."
+      desc: "High-intensity academic battles across 5 parallel competitive arenas testing financial wisdom, strategy, agile deduction, and tactical prowess."
     },
     {
       time: "05:30 PM – 07:00 PM",
       title: "Grand Valedictory Ceremony & Prize Distribution",
       venue: "Main Auditorium",
       type: "Ceremony",
-      desc: "Welcome Address, Valedictory Address by Chief Guest Mr. Selvaraj (Bandhan AMC Ltd.), Distribution of Certificates & Cash Awards to Winners, and Vote of Thanks."
+      desc: "Welcome Address, Valedictory Address by Chief Guest Mr. Selvaraj (Bandhan AMC Ltd.), Distribution of Certificates & Awards to Winners, and Vote of Thanks."
     }
   ],
 
@@ -595,7 +557,7 @@ const FINFEST_DATA = {
     { label: "Home", href: "#hero" },
     { label: "About College", href: "#about" },
     { label: "General Rules", href: "#rules" },
-    { label: "6 Challenges", href: "#events" },
+    { label: "5 Challenges", href: "#events" },
     { label: "Schedule", href: "#schedule" },
     { label: "Dignitaries & Guests", href: "#guests" },
     { label: "Register", href: "#register" }
