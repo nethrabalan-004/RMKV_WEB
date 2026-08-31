@@ -12,7 +12,7 @@ const FINFEST_DATA = {
     motto: "“We are what our thoughts have made us; so take care of what you think.” — Swami Vivekananda",
     description: "The Ramakrishna Mission Vivekananda College is a unit of Ramakrishna Mission Vidyapith, Chennai, which is a branch center of Ramakrishna Mission, Belur Math, West Bengal. It occupies a place of pre-eminence among the Educational Institutions of the Mission in India. Imbued with the spiritual ambience, the institution has been endeavouring for more than 75 years to impart man-making and character-building education as envisaged by Swami Vivekananda, nurturing intellectual, moral, and spiritual excellence."
   },
-  
+
   meta: {
     eventName: "FINFEST '26",
     tagline: "An Inter - Collegiate Academic Meet",
@@ -207,7 +207,7 @@ const FINFEST_DATA = {
       venue: "Campus Wide (Multi-Location)",
       timing: "2:45 PM – 5:15 PM",
       duration: "5 Progressive Stages",
-      teamSize: "2 - 3 Members per Team",
+      teamSize: "3 - 5 Members per Team",
       teamsPerCollege: "Max 2 Teams per Dept (8 per College)",
       regFormUrl: "https://forms.gle/7gGtVhC7zxNmPN8N9",
       ruleBookUrl: "rulebooks/Finfest'26 Rule Book FA.pdf",
