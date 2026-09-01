@@ -41,12 +41,12 @@ const FINFEST_DATA = {
     {
       name: "Brahmachari Akhandachaitanyaji Maharaj",
       designation: "In-Charge",
-      institution: "Evening Shift - 2",
+      institution: "Ramakrishna Mission Vivekananda College",
       role: "Benediction"
     },
     {
       name: "Dr. V. Manikantan",
-      designation: "Head of the Department & Shift-2 Joint Coordinator",
+      designation: "Head of the Department",
       institution: "P. G. Department of Accounting & Finance",
       role: "Convener"
     }
@@ -532,7 +532,7 @@ const FINFEST_DATA = {
     faculty: [
       {
         name: "Dr. V. Manikantan",
-        designation: "Head of the Department & Shift-2 Joint Coordinator",
+        designation: "Head of the Department",
         phone: "+91 94440 00000",
         email: "finfest.26.rkmvc@gmail.com"
       }

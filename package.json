@@ -1,7 +1,7 @@
 {
   "name": "finfest-26-web",
   "version": "1.0.0",
-  "description": "FINFEST '26 Official Website - Ramakrishna Mission Vivekananda College (Autonomous) Shift-2",
+  "description": "FINFEST '26 Official Website - Ramakrishna Mission Vivekananda Evening College (Autonomous)",
   "main": "index.html",
   "scripts": {
     "dev": "npx -y live-server --port=3000 --cors --no-browser",
