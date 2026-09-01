@@ -558,7 +558,7 @@ const FINFEST_DATA = {
       },
       {
         name: "Naresh N",
-        role: "Joint Secretary",
+        role: "Treasurer",
         phone: "+91 93617 13587",
         email: "finfest.26.rkmvc@gmail.com"
       }
