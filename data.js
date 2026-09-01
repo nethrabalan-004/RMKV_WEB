@@ -3,9 +3,9 @@
 
 const FINFEST_DATA = {
   college: {
-    name: "Ramakrishna Mission Vivekananda Evening College",
+    name: "Ramakrishna Mission Vivekananda College (Autonomous)",
     status: "Autonomous",
-    shift: "Evening Shift - 2",
+    shift: "Evening College",
     location: "Mylapore, Chennai - 600 004",
     affiliate: "Unit of Ramakrishna Mission Vidyapith, Chennai (Branch Centre of Ramakrishna Mission, Belur Math, West Bengal)",
     department: "P. G. DEPARTMENT OF ACCOUNTING & FINANCE",

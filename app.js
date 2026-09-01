@@ -660,7 +660,7 @@ function openRegisterModal(eventParam = '') {
         <ul class="modal-rules-checklist">
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Registration closes on <strong>03-09-2026</strong>. No on-the-spot registration.</span>
+            <span>Registration closes on <strong>08-09-2026</strong>. No on-the-spot registration.</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -747,7 +747,7 @@ function initIntroLoader() {
 
       // Sweeping Splines
       frame++;
-      
+
       // Wave 1: Cyan Surge
       ctx.beginPath();
       ctx.strokeStyle = '#00F0FF';
