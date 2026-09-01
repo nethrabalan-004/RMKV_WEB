@@ -45,6 +45,12 @@ const FINFEST_DATA = {
       role: "Benediction"
     },
     {
+      name: "Dr. M. Ramakrishnan",
+      designation: "Principal",
+      institution: "Ramakrishna Mission Vivekananda College",
+      role: "Guidance & Support"
+    },
+    {
       name: "Dr. V. Manikantan",
       designation: "Head of the Department",
       institution: "P. G. Department of Accounting & Finance",
