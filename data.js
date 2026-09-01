@@ -545,15 +545,21 @@ const FINFEST_DATA = {
     ],
     student: [
       {
-        name: "Secretary - Student Council",
-        role: "Overall Student Coordinator",
-        phone: "+91 91234 56789",
+        name: "Neyasudhan G",
+        role: "Secretary",
+        phone: "+91 91767 76887",
         email: "finfest.26.rkmvc@gmail.com"
       },
       {
-        name: "Joint Secretary - Finfest '26",
-        role: "Event Logistics & Registrations",
-        phone: "+91 98765 43210",
+        name: "Shomesh R K",
+        role: "Joint Secretary",
+        phone: "+91 72005 73715",
+        email: "finfest.26.rkmvc@gmail.com"
+      },
+      {
+        name: "Naresh N",
+        role: "Joint Secretary",
+        phone: "+91 93617 13587",
         email: "finfest.26.rkmvc@gmail.com"
       }
     ]
