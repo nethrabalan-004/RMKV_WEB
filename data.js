@@ -22,8 +22,8 @@ const FINFEST_DATA = {
     dateDisplay: "09 SEP 2026",
     eventTime: "2:00 PM",
     eventStartIso: "2026-09-09T14:00:00", // Kickoff at 2:00 PM for countdown timer
-    regDeadline: "2026-09-03T23:59:59", // Closes by 03-09-2026
-    regDeadlineDisplay: "03-09-2026",
+    regDeadline: "2026-09-08T23:59:59", // Closes by 08-09-2026
+    regDeadlineDisplay: "08-09-2026",
     reportTime: "Prior to 1:00 PM",
     venueDisplay: "College Campus, Mylapore, Chennai - 04",
     officialEmail: "finfest.26.rkmvc@gmail.com",
@@ -128,7 +128,7 @@ const FINFEST_DATA = {
       category: "Registration",
       icon: "clipboard-check",
       title: "Online Registration Deadline",
-      text: "Registration shall be done online via the Google Form before the last date. Online registration will be closed by 03-09-2026."
+      text: "Registration shall be done online via the Google Form before the last date. Online registration will be closed by 08-09-2026."
     },
     {
       category: "Individual Level",

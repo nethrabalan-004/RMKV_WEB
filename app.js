@@ -324,7 +324,7 @@ function openEventModal(eventId) {
     footerActionEl.innerHTML = `
       <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; width: 100%; justify-content: space-between; align-items: center;">
         <div style="font-size: 0.82rem; color: var(--text-muted); font-family: var(--font-mono);">
-          Registration deadline: 03-09-2026 • Reporting: Prior to 1:00 PM
+          Registration deadline: 08-09-2026 • Reporting: Prior to 1:00 PM
         </div>
         <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
           ${evt.ruleBookUrl ? `
@@ -585,7 +585,7 @@ function openRegisterModal(eventParam = '') {
         <ul class="modal-rules-checklist">
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span>Fill out this dedicated Google Form for <strong>${evt.title}</strong> before <strong>03-09-2026</strong>.</span>
+            <span>Fill out this dedicated Google Form for <strong>${evt.title}</strong> before <strong>08-09-2026</strong>.</span>
           </li>
           <li>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
