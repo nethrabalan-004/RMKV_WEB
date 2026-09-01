@@ -55,11 +55,11 @@ const FINFEST_DATA = {
   chiefGuests: [
     {
       type: "Inauguration Chief Guest",
-      name: "Dr. Soma Valliappan",
-      title: "Renowned Author, Speaker & Corporate Trainer",
-      organization: "Menmai Management Consultancy Pvt. Ltd.",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&auto=format&fit=crop&q=80",
-      bio: "Prolific writer on finance, investment, self-development, and corporate leadership with decades of executive consulting experience."
+      name: "Mr. CV Mohan Venkatesan",
+      title: "Retired Senior Vice President — Head of Operations, Legal Administration & Corporate Communication",
+      organization: "Sundaram Finance",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&auto=format&fit=crop&q=80",
+      bio: "A distinguished corporate leader with an illustrious career at Sundaram Finance, Mr. CV Mohan Venkatesan spearheaded Operations, Legal Administration, and Corporate Communication at the Senior Vice President level, bringing decades of strategic and administrative expertise."
     },
     {
       type: "Valediction Chief Guest",
