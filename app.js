@@ -441,7 +441,6 @@ function renderCoordinators() {
       <div class="coordinator-card">
         <h5>${s.name}</h5>
         <p>${s.role}</p>
-        ${s.phone ? `<a href="tel:${s.phone.replace(/\s/g,'')}" style="display:block; margin-bottom:0.25rem;">📞 ${s.phone}</a>` : ''}
         <a href="mailto:${s.email}">✉ ${s.email}</a>
       </div>
     `).join('');

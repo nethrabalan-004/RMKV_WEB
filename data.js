@@ -539,7 +539,6 @@ const FINFEST_DATA = {
       {
         name: "Dr. V. Manikantan",
         designation: "Head of the Department",
-        phone: "+91 94440 00000",
         email: "finfest.26.rkmvc@gmail.com"
       }
     ],
@@ -547,19 +546,16 @@ const FINFEST_DATA = {
       {
         name: "Neyasudhan G",
         role: "Secretary",
-        phone: "+91 91767 76887",
         email: "finfest.26.rkmvc@gmail.com"
       },
       {
         name: "Shomesh R K",
         role: "Joint Secretary",
-        phone: "+91 72005 73715",
         email: "finfest.26.rkmvc@gmail.com"
       },
       {
         name: "Naresh N",
         role: "Treasurer",
-        phone: "+91 93617 13587",
         email: "finfest.26.rkmvc@gmail.com"
       }
     ]
